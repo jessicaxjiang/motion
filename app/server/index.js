@@ -21,12 +21,12 @@ app.post("/addtask", function (req, res) {
   let taskisdone = body.taskisdone;
 
   // Check if the date object is a valid date
-  if (taskdate) {
-    console.log("Fail Date")
-    return res.sendStatus(400);
-  }
+  // if (taskdate) {
+  //   console.log("Fail Date")
+  //   return res.sendStatus(400);
+  // }
 
-  // Check if taskisdone object is bo0lean
+  // Check if taskisdone object is boolean
   if (typeof taskisdone !== "boolean") {
     console.log("Fail isdone")
     return res.sendStatus(400);
