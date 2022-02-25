@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-
+import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 function App() {
   return (
     <div className="App">
@@ -18,6 +19,9 @@ function App() {
           Learn React
         </a>
       </header>
+      <div>
+      <Button component={Link} to="/calendar">Calendar</Button>
+      </div>
     </div>
   );
 }
