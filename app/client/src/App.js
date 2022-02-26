@@ -1,22 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
+import Button from '@material-ui/core/Button';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div className ="title-text">WELCOME TO MOTION !!! </div>
+        <div className="content-text">The app that will help you stay organized and keep track of your tasks</div>
+        <Button variant="Log-In" >Log In</Button>
+        <Button className="Sign-in">Create Account</Button>
       </header>
     </div>
   );

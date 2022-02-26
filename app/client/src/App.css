@@ -14,20 +14,30 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #c8a287;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  
+}
+.title-text{
+  font-family:'Fraunces';
+  font-weight: 'bold';
+  font-style: 'italic';
+  font-size: 60px;
+  color: white;
+  font-style: 'italic';
+}
+.content-text{
+  font-family:'Fraunces';
+  font-size: 20px;
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.Log-In{
+  background-color: red;
 }
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
