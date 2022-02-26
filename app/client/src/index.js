@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Calendar from './Calendar';
+import Calendar from './components/Calendar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 ReactDOM.render(
   <React.StrictMode>
@@ -11,7 +11,6 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element ={<App />} />
         <Route path="/calendar" element={<Calendar />} />
-
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
