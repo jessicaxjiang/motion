@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  
 }
 
 .App-logo {
@@ -23,12 +23,13 @@
   
 }
 .title-text{
-  font-family:'Fraunces';
+  font-family: 'Fraunces', cursive;
   font-weight: 'bold';
   font-style: 'italic';
   font-size: 60px;
   color: white;
   font-style: 'italic';
+  animation: waviy 1s infinite;
 }
 .content-text{
   font-family:'Fraunces';
@@ -36,7 +37,25 @@
   color: white;
 }
 .Log-In{
-  background-color: red;
+  background-color: bisque;
+  position: absolute;
+  top: 30px;
+  right: 100px;
+  font-family:'Fraunces';
+
+}
+.Sign-In{
+  background-color: bisque;
+  position: absolute;
+  top: 30px;
+  right: 200px;
+  font-family:'Fraunces';
+}
+.Boards{
+  background-color: bisque;
+  position: absolute;
+  font-family:'Fraunces';
+  bottom: 50px;
 }
 @keyframes App-logo-spin {
   from {
