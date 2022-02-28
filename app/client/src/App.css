@@ -7,11 +7,10 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
+
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation:  linear;
   }
-}
 
 .App-header {
   background-color: #c8a287;
@@ -28,8 +27,7 @@
   font-style: 'italic';
   font-size: 60px;
   color: white;
-  font-style: 'italic';
-  animation: waviy 1s infinite;
+  animation: infinite;
 }
 .content-text{
   font-family:'Fraunces';
