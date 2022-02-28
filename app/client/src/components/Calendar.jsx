@@ -1,5 +1,5 @@
 import './components.css';
-import {CalendarComponent} from '@syncfusion/ej2-react-calendars';
+import { Inject, ScheduleComponent, Day, Week, WorkWeek, Month, Agenda } from '@syncfusion/ej2-react-schedule';
 import React from "react";
 
 /*
@@ -15,7 +15,9 @@ function Calendar() {
       <div className="Calendar">
         Calendar
       </div>
-      <CalendarComponent></CalendarComponent>
+      <ScheduleComponent>
+        <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
+      </ScheduleComponent>
     </div>
   );
 }
