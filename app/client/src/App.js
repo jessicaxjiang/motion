@@ -1,6 +1,17 @@
 import logo from './image1.png';
 import './App.css';
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Todo from './components/Todo';
+import Calendar from './components/Calendar';
+
+const Home = () => (
+  <div className="App">
+    <h1>Test Page</h1>
+    <Button component={Link} to="/calendar">Calendar</Button>
+  </div>
+);
 
 function App() {
   return (
@@ -13,8 +24,16 @@ function App() {
         <div className="content-text"><p> The app that will help you stay organized and keep track of your tasks. Stay up to date with your due dates!!</p></div>
         <div className="Boards"><Button variant="boards">Go To Your Boards</Button></div>
       </header>
+      <Router>
+     <div>
+     <Routes>
+       <Route path="/" element={<Home/>} />
+       <Route path="/todo" element={<Todo/>} />
+       <Route path="/calendar" element={<Calendar />} />
+     </Routes>
+     </div>
+   </Router>
     </div>
   );
-}
-
+  }
 export default App;
