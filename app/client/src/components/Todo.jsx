@@ -1,24 +1,23 @@
-import './components.css';
+import React from "react";
 
 function Todo() {
     return (
       <div>
         <h3>TODO</h3>
-        <form onSubmit={this.handleSubmit}>
+        <form >
           <label htmlFor="new-todo">
             What needs to be done?
           </label>
           <input
             id="new-todo"
-            onChange={this.handleChange}
-            value={this.state.text}
           />
           <button>
-            Add #{this.state.items.length + 1}
+            Add #
           </button>
         </form>
       </div>
     );
   }
+
 
 export default Todo;
