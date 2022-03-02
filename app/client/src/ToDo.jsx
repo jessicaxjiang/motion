@@ -1,3 +1,26 @@
+import './components.css';
+
+function Todo() {
+    return (
+        <div>
+            <h3>TODO</h3>
+            <form onSubmit={this.handleSubmit}>
+                <label htmlFor="new-todo">
+                    What needs to be done?
+                </label>
+                <input
+                    id="new-todo"
+                    onChange={this.handleChange}
+                    value={this.state.text}
+                />
+                <button>
+                    Add #{this.state.items.length + 1}
+                </button>
+            </form>
+        </div>
+    );
+}
+
 //addtask
 function addTask() {
     // let tasktitle = body.tasktitle;
@@ -98,3 +121,5 @@ function completeTask() {
         console.log(error); // in case fetch crashes for some reason
     });
 }
+
+export default Todo;
