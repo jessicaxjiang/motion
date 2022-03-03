@@ -7,12 +7,7 @@ import Calendar from './components/Calendar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element ={<App />} />
-        <Route path="/calendar" element={<Calendar />} />
-      </Routes>
-    </BrowserRouter>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
