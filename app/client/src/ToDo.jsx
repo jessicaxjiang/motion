@@ -89,7 +89,7 @@ function returnAllTasks() {
 function returnTask() {
     // let tasktitle = body.tasktitle;
 
-    let url = `/returnalltasks?title=${tasktitle}`;
+    let url = `/returntask?title=${tasktitle}`;
     fetch(url).then(function (response) {
         return response.json();
     }).then(function (data) {
