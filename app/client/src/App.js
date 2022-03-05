@@ -1,6 +1,5 @@
 import logo from './image1.png';
 import './App.css';
-import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Todo from './components/Todo';
@@ -19,11 +18,12 @@ const Home = () => (
 
 function App() {
   return (
-    <div>
-      <div className="App">
+    <div className="App">
+      <div className="login-header">
         <div className="Log-In"><Button variant="Log-In">Log In</Button></div>
         <div className="Sign-In"><Button variant="Sign-in">Create Account</Button></div>
-      </div><div>
+      </div>
+      <div>
         <Router>
           <div>
             <Routes>
