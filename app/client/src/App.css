@@ -1,5 +1,6 @@
 .App {
-  
+  text-align: center;
+  background-color: #DBD0BD;
 }
 
 .App-logo {
@@ -8,13 +9,21 @@
 }
 
 
-  .App-logo {
-    animation:  linear;
-  }
+.App-logo {
+  animation:  linear;
+}
 
+.login-header {
+  background-color: #c8a287;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .App-header {
   background-color: #c8a287;
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
