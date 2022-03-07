@@ -61,6 +61,7 @@
   font-family:'Fraunces';
 }
 .Boards{
+  display: flex;
   background-color: bisque;
   position: absolute;
   font-family:'Fraunces';
