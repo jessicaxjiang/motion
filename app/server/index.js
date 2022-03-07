@@ -57,7 +57,9 @@ app.post("/addevent", function (req, res) {
   let eventtitle = body.eventtitle;
   let eventdate = body.eventdate;
   let eventdescription = body.eventdescription;
-  let eventtime = body.eventtime;
+  let eventstarttime = body.eventstarttime;
+  let eventendtime = body.eventendtime;
+  let eventlocation = body.eventlocation;
   let eventisrepetition = body.eventrepetition;
 
   // Check if the date object is a valid date
@@ -67,7 +69,7 @@ app.post("/addevent", function (req, res) {
   // }
 
   // Check if the time object is a valid date
-  // if (eventtime) {
+  // if (eventstarttime and eventendtime) {
   //   console.log("Fail Time")
   //   return res.sendStatus(400);
   // }
@@ -79,10 +81,10 @@ app.post("/addevent", function (req, res) {
   }
 
   pool.query(
-    `INSERT INTO events(title, date, time, description, isrepetition) 
-        VALUES($1, $2, $3, $4, $5)
+    `INSERT INTO events(title, date, starttime, endtime, location, description, isrepetition) 
+        VALUES($1, $2, $3, $4, $5, $6, $7)
         RETURNING *`,
-    [eventtitle, eventdate, eventtime, eventdescription, eventisrepetition]
+    [eventtitle, eventdate, eventstarttime, eventendtime, eventlocation, eventdescription, eventisrepetition]
   ).then(function (response) {
     // row was successfully inserted into table
     console.log("Inserted:");
@@ -141,9 +143,10 @@ app.post("/updateevent", function (req, res) {
   let eventtitle = body.eventtitle;
   let eventdate = body.eventdate;
   let eventdescription = body.eventdescription;
-  let eventtime = body.eventtime;
+  let eventstarttime = body.eventstarttime;
+  let eventendtime = body.eventendtime;
+  let eventlocation = body.eventlocation;
   let eventisrepetition = body.eventrepetition;
-
 
   // Check if the date object is a valid date
   // if (eventdate) {
@@ -152,7 +155,7 @@ app.post("/updateevent", function (req, res) {
   // }
 
   // Check if the time object is a valid date
-  // if (eventtime) {
+  // if (eventstarttime and eventendtime) {
   //   console.log("Fail Time")
   //   return res.sendStatus(400);
   // }
@@ -164,9 +167,9 @@ app.post("/updateevent", function (req, res) {
   }
 
   pool.query(
-    `UPDATE events SET date = $2, time = $3, description = $4, isrepetition = $5
+    `UPDATE events SET date = $2, starttime = $3, endtime = $4, location = $5, description = $6, isrepetition = $7
         WHERE title = $1`,
-    [eventtitle, eventdate, eventtime, eventdescription, eventisrepetition]
+    [eventtitle, eventdate, eventstarttime, eventendtime, eventlocation, eventdescription, eventisrepetition]
   ).then(function (response) {
     // row was successfully inserted into table
     console.log("Updated");
