@@ -31,10 +31,10 @@ app.post("/addtask", function (req, res) {
   let taskisdone = body.taskisdone;
 
   // Check if the date object is a valid date
-  // if (taskEST) {
-  //   console.log("Fail EST")
-  //   return res.sendStatus(400);
-  // }
+  if (!(taskEST.isInteger())) {
+    console.log("Fail EST")
+    return res.sendStatus(400);
+  }
 
   // Check if taskisdone object is boolean
   if (typeof taskisdone !== "boolean") {
@@ -116,10 +116,10 @@ app.post("/updatetask", function (req, res) {
   let taskisdone = body.taskisdone;
 
   // Check if the date object is a valid date
-  // if (taskEST) {
-  //   console.log("Fail EST")
-  //   return res.sendStatus(400);
-  // }
+  if (!(taskEST.isInteger())) {
+    console.log("Fail EST")
+    return res.sendStatus(400);
+  }
 
   // Check if taskisdone object is boolean
   if (typeof taskisdone !== "boolean") {
@@ -206,7 +206,7 @@ app.get("/returnallevents", function (req, res) {
   pool.query(`SELECT * FROM events`).then(function (response) {
     console.log("Found:");
     console.log(response.rows);
-    res.json({ "rows": response.rows });
+    res.json({ "dataSource": response.rows });
   })
     .catch(function (error) {
       console.log(error);

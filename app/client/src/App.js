@@ -2,7 +2,7 @@ import logo from './image1.png';
 import './App.css';
 import Button from '@material-ui/core/Button';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Todo from './components/ToDo';
+import Todo from './components/Todo';
 import Calendar from './components/Calendar';
 import AddTodo from './components/AddTodo';
 
