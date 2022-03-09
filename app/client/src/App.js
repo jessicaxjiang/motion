@@ -2,7 +2,7 @@ import logo from './image1.png';
 import './App.css';
 import Button from '@material-ui/core/Button';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Todo from './components/Todo';
+import Todo from './components/ToDo';
 import Calendar from './components/Calendar';
 
 const Home = () => (
