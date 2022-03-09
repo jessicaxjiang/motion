@@ -1,39 +1,97 @@
-import React from "react";
 import './components.css';
+import Button from '@material-ui/core/Button';
 
 function Todo() {
-  return (
-    <div>
-      <form>
+    this.tasks = returnAllTasks();
+
+    return (
         <div>
-          <label for="taskName">Task</label><br></br>
-          <input id="taskName" type="text" name="taskName"/>
-        </div>
-        <div>
-          <label for="taskDescription">Description</label>
-          <br></br>
-          <input id="taskDescription" type="text" name="taskDescription" />
-        </div>
-        <div>
-          <label for="time">How long will it take you to complete? (minutes)</label>
-          <br></br>
-          <input id="time" type="number"/>
-        </div>
-        <div>
-          <label>Add to calendar?</label>
-          <input type="radio" name="quality" value="yes"/>
-          <label>Yes</label>
-          <input type="radio" name="quality" value="no"/>
-          <label>No</label>
-        </div>
-          <div className="button-div">
-            <button className="button" id="submit">Add Task</button>
+            <div>
+                <h3>TO DO</h3>
+                <div className="tasksContainer">
+
+                </div>
+                <div className="addTaskButton">
+                    <Button href="/addTodo">Add Task</Button>
+                </div>
             </div>
-        
-      </form>
-    </div>
-  );
+        </div>
+    );
 }
 
+// //updatetask
+// function updateTask() {
+//     // let tasktitle = body.tasktitle;
+//     // let taskdate = body.taskdate;
+//     // let taskdescription = body.taskdescription;
+//     // let taskisdone = body.taskisdone;
+
+//     console.log(tasktitle, taskdate, taskdescription, taskisdone);
+//     let data = { 'tasktitle': tasktitle, 'taskdate': taskdate, 'taskdescription': taskdescription, 'taskisdone': taskisdone };
+
+//     fetch('/updatetask', {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify(data),
+//     }).then(function (response) {
+//         console.log(response.status); // will be 400 if request failed
+//         if (response.status === 200) {
+//             msg.textContent = "Success"
+//         } else {
+//             msg.textContent = "Bad request"
+//         }
+//     }).catch(function (error) {
+//         console.log(error); // in case fetch crashes for some reason
+//     });
+// }
+
+// //returnalltasks
+function returnAllTasks() {
+    let url = `http://localhost:3001/returnalltasks`;
+    fetch(url).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        console.log("Client received from server:", data);
+    }).catch(function (error) {
+        console.log(error); // in case fetch crashes for some reason
+    });
+}
+
+// //returntask
+// function returnTask() {
+//     // let tasktitle = body.tasktitle;
+
+//     let url = `/returntask?title=${tasktitle}`;
+//     fetch(url).then(function (response) {
+//         return response.json();
+//     }).then(function (data) {
+//         console.log("Client received from server:", data);
+//     }).catch(function (error) {
+//         console.log(error); // in case fetch crashes for some reason
+//     });
+// }
+
+// //completetask
+// function completeTask() {
+//     // let tasktitle = body.tasktitle;
+
+//     console.log(tasktitle);
+//     let data = { 'tasktitle': tasktitle };
+
+//     fetch('/completetask', {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify(data),
+//     }).then(function (response) {
+//         console.log(response.status); // will be 400 if request failed
+//         if (response.status === 200) {
+//             msg.textContent = "Success"
+//         } else {
+//             msg.textContent = "Bad request"
+//         }
+//     }).catch(function (error) {
+//         console.log(error); // in case fetch crashes for some reason
+//     });
+// }
 
 export default Todo;
