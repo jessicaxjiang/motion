@@ -1,7 +1,6 @@
 import './components.css';
 import { Inject, ScheduleComponent, Day, Week, WorkWeek, Month, Agenda } from '@syncfusion/ej2-react-schedule';
 import React from "react";
-
 /*
 this is the calendar API I used:
 https://ej2.syncfusion.com/react/documentation/api/calendar/#calendarcomponent
@@ -18,11 +17,131 @@ function Calendar() {
       <div className="Calendar">
         Calendar
       </div>
-      <ScheduleComponent>
+      <ScheduleComponent eventSettings={{ datasource: [
+        {
+            Id : 1,
+            Subject: 'Test Event',
+            StartTime: new Date(2022, 4, 7, 6, 0),
+            EndTime: new Date(2022, 4, 7, 6, 30),
+            Location: 'Drexel University'
+        }
+    ] }}>
         <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
       </ScheduleComponent>
     </div>
   );
+}
+
+
+//addevent
+function addevent() {
+  // let eventtitle = body.eventtitle;
+  // let eventdate = body.eventdate;
+  // let eventdescription = body.eventdescription;
+  // let eventstarttime = body.eventstarttime;
+  // let eventendtime = body.eventendtime;
+  // let eventlocation = body.eventlocation;
+  // let eventisrepetition = body.eventrepetition;
+
+  console.log(eventtitle, eventdate, eventstarttime, eventendtime, eventlocation, eventdescription, eventisrepetition);
+  let data = {
+    'eventtitle': eventtitle, 'eventdate': eventdate, 'eventstarttime': eventstarttime, 'eventendtime': eventendtime, 'eventlocation': eventlocation, 'eventdescription': eventdescription, 'eventisrepetition': eventisrepetition
+  };
+
+  fetch('/addevent', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  }).then(function (response) {
+    console.log(response.status); // will be 400 if request failed
+    if (response.status === 200) {
+      msg.textContent = "Success"
+    } else {
+      msg.textContent = "Bad request"
+    }
+  }).catch(function (error) {
+    console.log(error); // in case fetch crashes for some reason
+  });
+}
+
+//updateevent
+function updateevent() {
+  // let eventtitle = body.eventtitle;
+  // let eventdate = body.eventdate;
+  // let eventdescription = body.eventdescription;
+  // let eventstarttime = body.eventstarttime;
+  // let eventendtime = body.eventendtime;
+  // let eventlocation = body.eventlocation;
+  // let eventisrepetition = body.eventrepetition;
+
+  console.log(eventtitle, eventdate, eventstarttime, eventendtime, eventlocation, eventdescription, eventisrepetition);
+  let data = {
+    'eventtitle': eventtitle, 'eventdate': eventdate, 'eventstarttime': eventstarttime, 'eventendtime': eventendtime, 'eventlocation': eventlocation, 'eventdescription': eventdescription, 'eventisrepetition': eventisrepetition
+  };
+
+  fetch('/updateevent', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  }).then(function (response) {
+    console.log(response.status); // will be 400 if request failed
+    if (response.status === 200) {
+      msg.textContent = "Success"
+    } else {
+      msg.textContent = "Bad request"
+    }
+  }).catch(function (error) {
+    console.log(error); // in case fetch crashes for some reason
+  });
+}
+
+//returnallevents
+function returnAllevents() {
+  let url = `/returnallevents`;
+  fetch(url).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    console.log("Client received from server:", data);
+  }).catch(function (error) {
+    console.log(error); // in case fetch crashes for some reason
+  });
+}
+
+//returnevent
+function returnevent() {
+  // let eventtitle = body.eventtitle;
+
+  let url = `/returnevent?title=${eventtitle}`;
+  fetch(url).then(function (response) {
+    return response.json();
+  }).then(function (data) {
+    console.log("Client received from server:", data);
+  }).catch(function (error) {
+    console.log(error); // in case fetch crashes for some reason
+  });
+}
+
+//deletevent
+function deletevent() {
+  // let eventtitle = body.eventtitle;
+
+  console.log(eventtitle);
+  let data = { 'eventtitle': eventtitle };
+
+  fetch('/deletevent', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  }).then(function (response) {
+    console.log(response.status); // will be 400 if request failed
+    if (response.status === 200) {
+      msg.textContent = "Success"
+    } else {
+      msg.textContent = "Bad request"
+    }
+  }).catch(function (error) {
+    console.log(error); // in case fetch crashes for some reason
+  });
 }
 
 export default Calendar;
