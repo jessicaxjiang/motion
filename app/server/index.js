@@ -4,6 +4,16 @@ const PORT = 3001;
 
 const app = express();
 
+const cors = require("cors");
+
+const corsOptions = {
+   origin:'*', 
+   credentials:true,
+   optionSuccessStatus:200,
+}
+
+app.use(cors(corsOptions))
+
 app.get("/api", (req, res) => {
   res.json({ message: "Testing server message." });
 });

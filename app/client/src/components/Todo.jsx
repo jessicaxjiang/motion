@@ -2,12 +2,18 @@ import './components.css';
 import Button from '@material-ui/core/Button';
 
 function Todo() {
+    this.tasks = returnAllTasks();
+
     return (
         <div>
             <div>
-            <h3>TODO</h3>
-            <p></p>
-            <div className="addTask"><Button variant="addTask">Add Task</Button></div>
+                <h3>TO DO</h3>
+                <div className="tasksContainer">
+
+                </div>
+                <div className="addTaskButton">
+                    <Button href="/addTodo">Add Task</Button>
+                </div>
             </div>
         </div>
     );
@@ -66,16 +72,16 @@ function Todo() {
 // }
 
 // //returnalltasks
-// function returnAllTasks() {
-//     let url = `/returnalltasks`;
-//     fetch(url).then(function (response) {
-//         return response.json();
-//     }).then(function (data) {
-//         console.log("Client received from server:", data);
-//     }).catch(function (error) {
-//         console.log(error); // in case fetch crashes for some reason
-//     });
-// }
+function returnAllTasks() {
+    let url = `http://localhost:3001/returnalltasks`;
+    fetch(url).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        console.log("Client received from server:", data);
+    }).catch(function (error) {
+        console.log(error); // in case fetch crashes for some reason
+    });
+}
 
 // //returntask
 // function returnTask() {
