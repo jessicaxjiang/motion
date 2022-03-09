@@ -18,9 +18,16 @@ function Calendar() {
       <div className="Calendar">
         Calendar
       </div>
-      <ScheduleComponent>
+      <ScheduleComponent eventSettings={{dataSource: [{
+        Id : 1,
+        EndTime: new Date(2022, 4, 1, 6, 30),
+        StartTime: new Date(2022, 4, 1, 6, 0),
+        Subject: 'test',
+        Location: 'testLocation'
+
+      }]}}>
         <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
-      </ScheduleComponent>
+      </ScheduleComponent> 
     </div>
   );
 }
