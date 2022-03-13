@@ -3,7 +3,21 @@ import Button from '@material-ui/core/Button';
 import Header from './Header';
 
 function Todo() {
-    // this.tasks = returnAllTasks();
+    let tasks = []
+
+    function returnAllTasks() {
+        let url = `http://localhost:3001/returnalltasks`;
+        fetch(url).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            console.log("Client received from server:", data);
+            tasks = data.rows;
+        }).catch(function (error) {
+            console.log(error); // in case fetch crashes for some reason
+        });
+    }
+
+    returnAllTasks();
 
     return (
         <div>
@@ -51,16 +65,6 @@ function Todo() {
 // }
 
 // //returnalltasks
-function returnAllTasks() {
-    let url = `http://localhost:3001/returnalltasks`;
-    fetch(url).then(function (response) {
-        return response.json();
-    }).then(function (data) {
-        console.log("Client received from server:", data);
-    }).catch(function (error) {
-        console.log(error); // in case fetch crashes for some reason
-    });
-}
 
 // //returntask
 // function returnTask() {
