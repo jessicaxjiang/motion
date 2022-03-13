@@ -2,19 +2,28 @@ import './components.css';
 import Button from '@material-ui/core/Button';
 
 function Todo() {
-    this.tasks = returnAllTasks();
+    // this.tasks = returnAllTasks();
 
     return (
         <div>
-            <div>
-                <h3>TO DO</h3>
-                <div className="tasksContainer">
-
-                </div>
-                <div className="addTaskButton">
-                    <Button href="/addTodo">Add Task</Button>
+            <div className="App">
+                <div className="login-header">
+                    <div className='CalendarButton'><Button href="/calendar">Calendar</Button></div>
+                    <div className='TaskButton'><Button href="/todo">Tasks</Button></div>
+                    <div className="title-text"><a href='/'>Motion</a> </div>
                 </div>
             </div>
+            <div>
+                <div>
+                    <h3>TO DO</h3>
+                    <div className="tasksContainer">
+                    </div>
+                    <div className="addTaskButton">
+                        <Button href="/addTodo">Add Task</Button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     );
 }
@@ -76,11 +85,11 @@ function returnAllTasks() {
 //     // let tasktitle = body.tasktitle;
 
 //     console.log(tasktitle);
-//     let data = { 'tasktitle': tasktitle };
+//     let data = {'tasktitle': tasktitle };
 
 //     fetch('/completetask', {
 //         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
+//         headers: {'Content-Type': 'application/json' },
 //         body: JSON.stringify(data),
 //     }).then(function (response) {
 //         console.log(response.status); // will be 400 if request failed
