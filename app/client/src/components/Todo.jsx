@@ -1,22 +1,18 @@
 import './components.css';
 import Button from '@material-ui/core/Button';
+import Header from './Header';
 
 function Todo() {
     // this.tasks = returnAllTasks();
 
     return (
         <div>
-            <div className="App">
-                <div className="login-header">
-                    <div className='CalendarButton'><Button href="/calendar">Calendar</Button></div>
-                    <div className='TaskButton'><Button href="/todo">Tasks</Button></div>
-                    <div className="title-text"><a href='/'>Motion</a> </div>
-                </div>
-            </div>
+            <Header/>
             <div>
                 <div>
                     <h3>TO DO</h3>
                     <div className="tasksContainer">
+                        <p>No tasks found.</p>
                     </div>
                     <div className="addTaskButton">
                         <Button href="/addTodo">Add Task</Button>

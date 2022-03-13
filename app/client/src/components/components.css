@@ -56,3 +56,12 @@ a {
   color: #FFFFFF;
   text-decoration: none;
 }
+
+.header {
+  background-color: #c8a287;
+  min-height: 15vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

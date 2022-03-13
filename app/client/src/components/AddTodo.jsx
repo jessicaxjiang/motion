@@ -1,9 +1,11 @@
 import React from "react";
 import './components.css';
+import Header from './Header';
 
 function AddTodo() {
   return (
     <div>
+      <Header/>
       <form>
         <div>
           <label for="taskName">Task</label><br></br>
