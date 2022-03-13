@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './components.css';
-import Header from './Header';
+
 
 const AddEvent = props => {
     const [event, setEvent] = useState(props.event)
@@ -21,7 +21,6 @@ const AddEvent = props => {
 
     return (
         <div>
-            <Header />
             <form>
                 <div onSubmit={submit}>
                     <label htmlFor="eventName">Event</label><br></br>
@@ -52,6 +51,7 @@ const AddEvent = props => {
                     <label htmlFor="startHour">Start Time (hours)</label>
                     <br></br>
                     <input id="startHour" type="number" />
+                    <br></br>
                     <label htmlFor="startMinutes">Start Time (minutes)</label>
                     <br></br>
                     <input id="startMinutes" type="number" />
@@ -67,6 +67,7 @@ const AddEvent = props => {
                     <label htmlFor="endHour">End Time (hours)</label>
                     <br></br>
                     <input id="endHour" type="number" />
+                    <br></br>
                     <label htmlFor="endMinutes">End Time (minutes)</label>
                     <br></br>
                     <input id="endMinutes" type="number" />
