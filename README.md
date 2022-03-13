@@ -3,11 +3,11 @@
 ## To start:
 Open two terminals:
 
-Terminal #1
+Terminal 1
     cd into the app folder and run `npm install`.
     Then cd into the server folder, run `npm start`
     
-Terminal #2
+Terminal 2
     cd into the app/client folder and run `npm install` .
     Then run `npm start`
 
