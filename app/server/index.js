@@ -7,9 +7,9 @@ const app = express();
 const cors = require("cors");
 
 const corsOptions = {
-   origin:'*', 
-   credentials:true,
-   optionSuccessStatus:200,
+  origin: '*',
+  credentials: true,
+  optionSuccessStatus: 200,
 }
 
 app.use(cors(corsOptions))
@@ -65,20 +65,21 @@ app.post("/addevent", function (req, res) {
   // Get data from body
   let body = req.body;
   let eventtitle = body.eventtitle;
-  let eventdate = body.eventdate;
   let eventdescription = body.eventdescription;
-  let eventtime = body.eventtime;
+  let eventstarttime = body.eventstarttime;
+  let eventendtime = body.eventendtime;
+  let eventlocation = body.eventlocation;
   let eventisrepetition = body.eventrepetition;
 
   // Check if the date object is a valid date
-  // if (eventdate) {
-  //   console.log("Fail Date")
+  // if (eventstarttime) {
+  //   console.log("Fail starttime")
   //   return res.sendStatus(400);
   // }
 
   // Check if the time object is a valid date
-  // if (eventtime) {
-  //   console.log("Fail Time")
+  // if (eventendtime) {
+  //   console.log("Fail endtime")
   //   return res.sendStatus(400);
   // }
 
@@ -89,10 +90,10 @@ app.post("/addevent", function (req, res) {
   }
 
   pool.query(
-    `INSERT INTO events(title, date, time, description, isrepetition) 
+    `INSERT INTO events(title, starttime, endtime, location, description, isrepetition) 
         VALUES($1, $2, $3, $4, $5)
         RETURNING *`,
-    [eventtitle, eventdate, eventtime, eventdescription, eventisrepetition]
+    [eventtitle, eventstarttime, eventendtime, eventlocation, eventdescription, eventisrepetition]
   ).then(function (response) {
     // row was successfully inserted into table
     console.log("Inserted:");
@@ -148,21 +149,22 @@ app.post("/updateevent", function (req, res) {
   // Get data from body
   let body = req.body;
   let eventtitle = body.eventtitle;
-  let eventdate = body.eventdate;
   let eventdescription = body.eventdescription;
-  let eventtime = body.eventtime;
+  let eventstarttime = body.eventstarttime;
+  let eventendtime = body.eventendtime;
+  let eventlocation = body.eventlocation;
   let eventisrepetition = body.eventrepetition;
 
 
   // Check if the date object is a valid date
-  // if (eventdate) {
-  //   console.log("Fail Date")
+  // if (eventstarttime) {
+  //   console.log("Fail starttime")
   //   return res.sendStatus(400);
   // }
 
   // Check if the time object is a valid date
-  // if (eventtime) {
-  //   console.log("Fail Time")
+  // if (eventendtime) {
+  //   console.log("Fail endtime")
   //   return res.sendStatus(400);
   // }
 
@@ -173,9 +175,9 @@ app.post("/updateevent", function (req, res) {
   }
 
   pool.query(
-    `UPDATE events SET date = $2, time = $3, description = $4, isrepetition = $5
+    `UPDATE events SET starttime = $2, endtime = $3, location = $4, description = $5, isrepetition = $6
         WHERE title = $1`,
-    [eventtitle, eventdate, eventtime, eventdescription, eventisrepetition]
+    [eventtitle, eventstarttime, eventendtime, eventlocation, eventdescription, eventisrepetition]
   ).then(function (response) {
     // row was successfully inserted into table
     console.log("Updated");
