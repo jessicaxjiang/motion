@@ -51,7 +51,6 @@
   top: 30px;
   right: 100px;
   font-family:'Fraunces';
-
 }
 .Sign-In{
   background-color: bisque;
@@ -60,12 +59,21 @@
   right: 200px;
   font-family:'Fraunces';
 }
+
+.Tasks{
+  background-color: bisque;
+  position: absolute;
+  font-family:'Fraunces';
+  bottom: 50px;
+}
+
 .Boards{
   background-color: bisque;
   position: absolute;
   font-family:'Fraunces';
   bottom: 100px;
 }
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -73,4 +81,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+a {
+  color: #FFFFFF;
+  text-decoration: none;
 }

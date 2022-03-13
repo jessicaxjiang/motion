@@ -1,13 +1,25 @@
+const pg = require("pg");
 const express = require("express");
 
 const PORT = 3001;
 
 const app = express();
+const hostname = "localhost";
+
+
+const env = require("../env.json");
+const Pool = pg.Pool;
+const pool = new Pool(env);
+pool.connect().then(function () {
+    console.log(`Connected to database ${env.database}`);
+});
+
+app.use(express.json());
 
 const cors = require("cors");
 
 const corsOptions = {
-   origin:'*', 
+   origin:'http://localhost:3000', 
    credentials:true,
    optionSuccessStatus:200,
 }
@@ -57,7 +69,6 @@ app.post("/addtask", function (req, res) {
       // something went wrong when inserting the row
       console.log(error);
       return res.sendStatus(400);
-      res.send();
     });
 });
 
