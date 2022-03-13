@@ -58,37 +58,4 @@ const AddTodo = props => {
   )
 };
 
-
-//addtask
-function addTask() {
-  let nameInput = document.getElementById("taskName");
-  let descriptionInput = document.getElementById("taskDescription");
-  let timeInput = document.getElementById("time");
-
-  // submitButton.addEventListener("click", addTasks());
-
-  let tasktitle = nameInput.value;
-  let taskEST = timeInput.value;
-  let taskdescription = descriptionInput.value;
-  let taskisdone = false;
-
-  console.log(tasktitle, taskEST, taskdescription, taskisdone);
-  let data = { 'tasktitle': tasktitle, 'taskEST': taskEST, 'taskdescription': taskdescription, 'taskisdone': taskisdone };
-
-  fetch('/addtask', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
-  }).then(function (response) {
-    console.log(response.status); // will be 400 if request failed
-    // if (response.status === 200) {
-    //   msg.textContent = "Success"
-    // } else {
-    //   msg.textContent = "Bad request"
-    // }
-  }).catch(function (error) {
-    console.log(error); // in case fetch crashes for some reason
-  });
-}
-
 export default AddTodo;
