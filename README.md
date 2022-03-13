@@ -25,8 +25,8 @@ Creating Tables
 
     CREATE TABLE tasks (
         id SERIAL PRIMARY KEY,
-        title VARCHAR(15),
+        title VARCHAR(50),
         est INT,
-        description VARCHAR(50),
+        description VARCHAR(200),
         isdone BOOLEAN
     );
