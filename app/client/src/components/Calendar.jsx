@@ -31,7 +31,7 @@ function Calendar() {
   );
 }
 
-
+/*
 //addevent
 function addevent() {
   // let eventtitle = body.eventtitle;
@@ -142,5 +142,5 @@ function deletevent() {
     console.log(error); // in case fetch crashes for some reason
   });
 }
-
+*/
 export default Calendar;
