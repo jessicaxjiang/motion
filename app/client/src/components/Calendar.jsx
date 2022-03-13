@@ -17,16 +17,18 @@ function Calendar() {
       <div className="Calendar">
         Calendar
       </div>
-      <ScheduleComponent eventSettings={{dataSource: [{
-        Id : 1,
-        EndTime: new Date(2022, 4, 1, 6, 30),
-        StartTime: new Date(2022, 4, 1, 6, 0),
-        Subject: 'test',
-        Location: 'testLocation'
+      <ScheduleComponent eventSettings={{
+        dataSource: [{
+          Id: 1,
+          EndTime: new Date(2022, 4, 1, 6, 30),
+          StartTime: new Date(2022, 4, 1, 6, 0),
+          Subject: 'test',
+          Location: 'testLocation'
 
-      }]}}>
+        }]
+      }}>
         <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
-      </ScheduleComponent> 
+      </ScheduleComponent>
     </div>
   );
 }
@@ -35,16 +37,15 @@ function Calendar() {
 //addevent
 function addevent() {
   // let eventtitle = body.eventtitle;
-  // let eventdate = body.eventdate;
   // let eventdescription = body.eventdescription;
   // let eventstarttime = body.eventstarttime;
   // let eventendtime = body.eventendtime;
   // let eventlocation = body.eventlocation;
   // let eventisrepetition = body.eventrepetition;
 
-  console.log(eventtitle, eventdate, eventstarttime, eventendtime, eventlocation, eventdescription, eventisrepetition);
+  console.log(eventtitle, eventstarttime, eventendtime, eventlocation, eventdescription, eventisrepetition);
   let data = {
-    'eventtitle': eventtitle, 'eventdate': eventdate, 'eventstarttime': eventstarttime, 'eventendtime': eventendtime, 'eventlocation': eventlocation, 'eventdescription': eventdescription, 'eventisrepetition': eventisrepetition
+    'eventtitle': eventtitle, 'eventstarttime': eventstarttime, 'eventendtime': eventendtime, 'eventlocation': eventlocation, 'eventdescription': eventdescription, 'eventisrepetition': eventisrepetition
   };
 
   fetch('/addevent', {
@@ -66,16 +67,15 @@ function addevent() {
 //updateevent
 function updateevent() {
   // let eventtitle = body.eventtitle;
-  // let eventdate = body.eventdate;
   // let eventdescription = body.eventdescription;
   // let eventstarttime = body.eventstarttime;
   // let eventendtime = body.eventendtime;
   // let eventlocation = body.eventlocation;
   // let eventisrepetition = body.eventrepetition;
 
-  console.log(eventtitle, eventdate, eventstarttime, eventendtime, eventlocation, eventdescription, eventisrepetition);
+  console.log(eventtitle, eventstarttime, eventendtime, eventlocation, eventdescription, eventisrepetition);
   let data = {
-    'eventtitle': eventtitle, 'eventdate': eventdate, 'eventstarttime': eventstarttime, 'eventendtime': eventendtime, 'eventlocation': eventlocation, 'eventdescription': eventdescription, 'eventisrepetition': eventisrepetition
+    'eventtitle': eventtitle, 'eventstarttime': eventstarttime, 'eventendtime': eventendtime, 'eventlocation': eventlocation, 'eventdescription': eventdescription, 'eventisrepetition': eventisrepetition
   };
 
   fetch('/updateevent', {
