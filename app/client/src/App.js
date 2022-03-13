@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Todo from './components/Todo';
 import Calendar from './components/Calendar';
 import AddTodo from './components/AddTodo';
+import AddEvent from './components/addEvent';
 
 const Home = () => (
   <div className="App">
@@ -31,6 +32,7 @@ function App() {
               <Route path="/todo" element={<Todo />} />
               <Route path="/calendar" element={<Calendar />} />
               <Route path="/addTodo" element={<AddTodo/>} />
+              <Route path="/addEvent" element = {<AddEvent />} />
             </Routes>
           </div>
         </Router>
