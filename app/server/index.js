@@ -36,14 +36,15 @@ app.listen(PORT, () => {
 
 app.post("/addtask", function (req, res) {
   // Get data from body
-  let body = req.body;
-  let tasktitle = body.tasktitle;
-  let taskEST = body.taskEST;
-  let taskdescription = body.taskdescription;
-  let taskisdone = body.taskisdone;
-
+  let body = req.body.task;
+  let tasktitle = body.title;
+  let taskEST = parseInt(body.est);
+  let taskdescription = body.description;
+  let taskisdone = false;
+  console.log(taskEST)
+  console.log(Number.isInteger(taskEST));
   // Check if the date object is a valid date
-  if (!(taskEST.isInteger())) {
+  if (!(Number.isInteger(taskEST))) {
     console.log("Fail EST")
     return res.sendStatus(400);
   }
