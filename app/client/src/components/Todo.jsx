@@ -3,7 +3,31 @@ import Button from '@material-ui/core/Button';
 import Header from './Header';
 
 function Todo() {
-    // this.tasks = returnAllTasks();
+    let tasks = []
+
+    function returnAllTasks() {
+        let url = `http://localhost:3001/returnalltasks`;
+        fetch(url).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            console.log("Client received from server:", data);
+            console.log(data.rows);
+            tasks = data.rows;
+        }).catch(function (error) {
+            console.log(error); // in case fetch crashes for some reason
+        });
+    }
+
+    let tasksText = "";
+    returnAllTasks();
+    console.log(tasks)
+    if (tasks.length == 0) {
+        tasksText = "No tasks found. Add some below!\n New line"
+    } else {
+        for (let t of tasks) {
+            tasksText += t;
+        }
+    }
 
     return (
         <div>
@@ -12,7 +36,7 @@ function Todo() {
                 <div>
                     <h3>TO DO</h3>
                     <div className="tasksContainer">
-                        <p>No tasks found.</p>
+                        {tasksText}
                     </div>
                     <div className="addTaskButton">
                         <Button href="/addTodo">Add Task</Button>
@@ -51,16 +75,6 @@ function Todo() {
 // }
 
 // //returnalltasks
-function returnAllTasks() {
-    let url = `http://localhost:3001/returnalltasks`;
-    fetch(url).then(function (response) {
-        return response.json();
-    }).then(function (data) {
-        console.log("Client received from server:", data);
-    }).catch(function (error) {
-        console.log(error); // in case fetch crashes for some reason
-    });
-}
 
 // //returntask
 // function returnTask() {
