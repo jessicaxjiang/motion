@@ -1,6 +1,8 @@
 import './components.css';
 import { Inject, ScheduleComponent, Day, Week, WorkWeek, Month, Agenda } from '@syncfusion/ej2-react-schedule';
 import React from "react";
+import Header from './Header';
+
 /*
 this is the calendar API I used:
 https://ej2.syncfusion.com/react/documentation/api/calendar/#calendarcomponent
@@ -14,6 +16,7 @@ https://www.youtube.com/watch?v=wgqX295fGkY
 function Calendar() {
   return (
     <div>
+      <Header/>
       <div className="Calendar">
         Calendar
       </div>
@@ -143,4 +146,5 @@ function deletevent() {
   });
 }
 */
+
 export default Calendar;

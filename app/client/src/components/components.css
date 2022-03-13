@@ -36,3 +36,32 @@
     margin: 10px 10px;
 }
 
+
+.CalendarButton{
+  background-color: bisque;
+  position: absolute;
+  top: 30px;
+  right: 100px;
+  font-family:'Fraunces';
+}
+.TaskButton{
+  background-color: bisque;
+  position: absolute;
+  font-family:'Fraunces';
+  right: 200px;
+  top:30px;
+}
+
+a {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.header {
+  background-color: #c8a287;
+  min-height: 15vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
