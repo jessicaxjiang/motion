@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import './components.css';
 import Header from './Header';
+import Button from '@material-ui/core/Button';
 
 const AddTodo = props => {
   const [task, setTask] = useState(props.task)
@@ -50,7 +51,7 @@ const AddTodo = props => {
           <label>No</label>
         </div>
         <div className="button-div">
-          <input type="submit" className="addTask" name="Add Task" />
+          <Button>Add Task</Button>
         </div>
       </form>
     </div>

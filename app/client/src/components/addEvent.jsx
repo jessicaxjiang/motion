@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import './components.css';
 
-
 const AddEvent = props => {
     const [event, setEvent] = useState(props.event)
-
     const submit = e => {
         e.preventDefault();
         fetch('/addevent', {
@@ -90,7 +88,6 @@ const AddEvent = props => {
 
 
 //addEvent logic?
-/*
 function addEvent() {
     let nameInput = document.getElementById("eventName");
     let descriptionInput = document.getElementById("eventDescription");
@@ -120,6 +117,6 @@ function addEvent() {
     }).catch(function (error) {
         console.log(error); // in case fetch crashes for some reason
     });
-}*/
+}
 
 export default AddEvent;

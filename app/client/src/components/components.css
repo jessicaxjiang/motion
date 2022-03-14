@@ -1,23 +1,26 @@
+@import url(https://fonts.googleapis.com/css?family=Fredoka);
+
 .Calendar{
     background-color: #C9B09A;
     text-align: center;
     color: white;
+    font-family: 'Fredoka';
 }
 
 .content-text{
-    font-family:'Fraunces';
     font-size: 20px;
     color: black;
     align-items: center;
     justify-content: center;
+    font-family: 'Fredoka';
   }
 
 .title-text{
-    font-family: 'Fraunces', cursive;
     font-weight: 'bold';
     font-style: 'italic';
     font-size: 60px;
     color: white;
+    font-family: 'Fredoka';
   }
 
 .button, .addTask {
@@ -29,7 +32,7 @@
     display: inline-block;
     font-size: 16px;
     cursor: pointer;
-    font-family:'Fraunces';
+    font-family: 'Fredoka';
 }
 
 .button-div {
@@ -42,19 +45,20 @@
   position: absolute;
   top: 30px;
   right: 100px;
-  font-family:'Fraunces';
+  font-family: 'Fredoka';
 }
 .TaskButton{
   background-color: bisque;
   position: absolute;
-  font-family:'Fraunces';
   right: 200px;
   top:30px;
+  font-family: 'Fredoka';
 }
 
 a {
   color: #FFFFFF;
   text-decoration: none;
+  font-family: 'Fredoka';
 }
 
 .header {
@@ -64,4 +68,5 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-family: 'Fredoka';
 }

@@ -13,6 +13,15 @@ https://ej2.syncfusion.com/react/documentation/api/schedule#properties
 using this tutorial:
 https://www.youtube.com/watch?v=wgqX295fGkY
 */
+let data= [{
+  Id: 1,
+  EndTime: new Date(2022, 4, 1, 6, 30),
+  StartTime: new Date(2022, 4, 1, 6, 0),
+  Subject: 'test2',
+  Location: 'testLocation'
+
+}]
+
 function Calendar() {
   return (
     <div>
@@ -20,16 +29,7 @@ function Calendar() {
       <div className="Calendar">
         Calendar
       </div>
-      <ScheduleComponent eventSettings={{
-        dataSource: [{
-          Id: 1,
-          EndTime: new Date(2022, 4, 1, 6, 30),
-          StartTime: new Date(2022, 4, 1, 6, 0),
-          Subject: 'test',
-          Location: 'testLocation'
-
-        }]
-      }}>
+      <ScheduleComponent eventSettings={{ dataSource: data}}>
         <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
       </ScheduleComponent>
     </div>

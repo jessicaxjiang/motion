@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Fredoka);
+
 .App {
   text-align: center;
   background-color: #DBD0BD;
@@ -31,7 +33,7 @@
   
 }
 .title-text{
-  font-family: 'Fraunces', cursive;
+  font-family: 'Fredoka';
   font-weight: 'bold';
   font-style: 'italic';
   font-size: 60px;
@@ -39,7 +41,7 @@
   animation: infinite;
 }
 .content-text{
-  font-family:'Fraunces';
+  font-family: 'Fredoka';
   font-size: 20px;
   color: white;
   align-items: center;
@@ -50,27 +52,27 @@
   position: absolute;
   top: 30px;
   right: 100px;
-  font-family:'Fraunces';
+  font-family: 'Fredoka';
 }
 .Sign-In{
   background-color: bisque;
   position: absolute;
   top: 30px;
   right: 200px;
-  font-family:'Fraunces';
+  font-family: 'Fredoka';;
 }
 
 .Tasks{
   background-color: bisque;
   position: absolute;
-  font-family:'Fraunces';
+  font-family: 'Fredoka';;
   bottom: 50px;
 }
 
 .Boards{
   background-color: bisque;
   position: absolute;
-  font-family:'Fraunces';
+  font-family: 'Fredoka';;
   bottom: 100px;
 }
 
