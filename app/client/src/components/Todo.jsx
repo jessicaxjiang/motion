@@ -24,32 +24,28 @@ function Todo() {
 
     return (
         <div>
-            <Header/>
-            <div>
-                <div>
-                    <h3>TO DO</h3>
-                    <div className="tasksContainer">
-                        {tasks &&
-                            tasks.map((task, index) => {
-                                console.log(task);
-                                let title = task.title;
-                                let description = task.description;
-                                let est = task.est;
-                                return (
-                                <div className='task' key = {index}> 
+            <Header />
+                <h3>TO DO</h3>
+                <div className="tasks-container">
+                    {tasks &&
+                        tasks.map((task, index) => {
+                            console.log(task);
+                            let title = task.title;
+                            let description = task.description;
+                            let est = task.est;
+                            return (
+                                <div className='task' key={index}>
                                     <h2>{title}</h2>
                                     <p>Description: {description}</p>
                                     <p>Estimated Time: {est} minutes</p>
                                 </div>
-                                )
-                            })
-                        }
-                    </div>
-                    <div className="addTaskButton">
-                        <Button href="/addTodo">Add Task</Button>
-                    </div>
+                            )
+                        })
+                    }
                 </div>
-            </div>
+                <div className="addTaskButton">
+                    <Button href="/addTodo">Add Task</Button>
+                </div>
 
         </div>
     );

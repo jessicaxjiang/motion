@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Button from '@material-ui/core/Button';
+import Header from './Header';
 import './components.css';
 
 const AddEvent = props => {
@@ -19,23 +21,30 @@ const AddEvent = props => {
 
     return (
         <div>
+            <Header/>
             <form>
                 <div onSubmit={submit}>
                     <label htmlFor="eventName">Event</label><br></br>
                     <input id="eventName"
                         type="text"
                         name="eventName"
+                        className="subject-input"
+                        placeholder="Event name"
                         onChange={e => setEvent({ ...event, subject: e.target.value })} />
                 </div>
+                <br></br>
                 <div>
                     <label htmlFor="eventDescription">Description</label>
                     <br></br>
-                    <input
+                    <textarea
+                        className="description-input"
                         id="eventDescription"
                         type="text"
                         name="eventDescription"
+                        placeholder="Add description"
                         onChange={e => setEvent({ ...event, description: e.target.value })} />
                 </div>
+                <br></br>
                 <div>
                     <label htmlFor="eventLocation">Location</label>
                     <br></br>
@@ -43,42 +52,25 @@ const AddEvent = props => {
                         id="eventLocation"
                         type="text"
                         name="eventLocation"
+                        className="subject-input"
+                        placeholder="Add Location"
                         onChange={e => setEvent({ ...event, location: e.target.value })} />
                 </div>
+                <br></br>
                 <div>
-                    <label htmlFor="startHour">Start Time (hours)</label>
+                    <label htmlFor="startHour">Start Time</label>
                     <br></br>
-                    <input id="startHour" type="number" />
-                    <br></br>
-                    <label htmlFor="startMinutes">Start Time (minutes)</label>
-                    <br></br>
-                    <input id="startMinutes" type="number" />
+                    <input className="subject-input" id="startHour" type="datetime-local" />
                 </div>
+                <br></br>
                 <div>
-                    <label>AM or PM?</label>
-                    <input type="radio" name="startAMPM" value="am" />
-                    <label>AM</label>
-                    <input type="radio" name="startAMPM" value="pm" />
-                    <label>PM</label>
-                </div>
-                <div>
-                    <label htmlFor="endHour">End Time (hours)</label>
+                    <label htmlFor="endHour">End Time</label>
                     <br></br>
-                    <input id="endHour" type="number" />
-                    <br></br>
-                    <label htmlFor="endMinutes">End Time (minutes)</label>
-                    <br></br>
-                    <input id="endMinutes" type="number" />
+                    <input className="subject-input" id="endHour" type="datetime-local" />
                 </div>
-                <div>
-                    <label>AM or PM?</label>
-                    <input type="radio" name="endAMPM" value="am" />
-                    <label>AM</label>
-                    <input type="radio" name="endAMPM" value="pm" />
-                    <label>PM</label>
-                </div>
+                <br></br>
                 <div className="button-div">
-                    <input type="submit" className="addEvent" name="Add Event" />
+                    <Button type="submit" className="addEvent">Add Event</Button>
                 </div>
 
             </form>
