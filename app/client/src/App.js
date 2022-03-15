@@ -7,6 +7,7 @@ import Todo from './components/Todo';
 import Calendar from './components/Calendar';
 import AddTodo from './components/AddTodo';
 import AddEvent from './components/addEvent';
+import SignUp from './components/SignUp';
 
 const Home = () => (
   <div className="App">
@@ -19,7 +20,7 @@ const Home = () => (
         <div className="home-content-text"><p>Manage and visualize your tasks to acheieve maximum productivity</p></div>
         <div id="signup-wrapper">
           <input id="username" type="text" className="input" placeholder="Username"></input>
-          <div className="create-account-button2"><Button>Sign up!</Button></div>
+          <div className="create-account-button2"><Button href="/signup">Sign up!</Button></div>
         </div>
       </header>
   </div>
@@ -37,6 +38,7 @@ function App() {
               <Route path="/calendar" element={<Calendar />} />
               <Route path="/addTodo" element={<AddTodo/>} />
               <Route path="/addEvent" element = {<AddEvent />} />
+              <Route path="/signup" element = {<SignUp />} />
             </Routes>
           </div>
         </Router>

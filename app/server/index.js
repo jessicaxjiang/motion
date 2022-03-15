@@ -39,9 +39,10 @@ app.post("/addtask", function (req, res) {
   let body = req.body.task;
   let tasktitle = body.title;
   let taskEST = parseInt(body.est);
+  let starttime = body.startTime;
   let taskdescription = body.description;
   let taskisdone = false;
-  console.log(taskEST)
+  console.log(starttime)
   console.log(Number.isInteger(taskEST));
   // Check if the date object is a valid date
   if (!(Number.isInteger(taskEST))) {
@@ -56,10 +57,10 @@ app.post("/addtask", function (req, res) {
   }
 
   pool.query(
-    `INSERT INTO tasks(title, EST, description, isdone) 
-        VALUES($1, $2, $3, $4)
+    `INSERT INTO tasks(title, EST, description, startdatetime, isdone) 
+        VALUES($1, $2, $3, $4, $5)
         RETURNING *`,
-    [tasktitle, taskEST, taskdescription, taskisdone]
+    [tasktitle, taskEST, taskdescription, starttime, taskisdone]
   ).then(function (response) {
     // row was successfully inserted into table
     console.log("Inserted:");

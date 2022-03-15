@@ -3,6 +3,7 @@
 
 label{
   font-family: 'Fredoka';
+  margin: 5px;
 }
 
 input[type="checkbox"]{
@@ -107,7 +108,6 @@ a {
 }
 
 .header {
-  background-color: #c8a287;
   min-height: 15vh;
   display: flex;
   flex-direction: column;

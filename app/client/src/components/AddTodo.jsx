@@ -28,7 +28,7 @@ const AddTodo = props => {
         <div>
           <label htmlFor="taskName">Task</label><br></br>
           <input id="taskName"
-            class="task-input"
+            className="task-input"
             type="text"
             name="taskName"
             placeholder="Task name"
@@ -38,21 +38,21 @@ const AddTodo = props => {
         <div>
           <label htmlFor="taskDescription">Description</label>
           <br></br>
-          <textarea id="taskDescription" placeholder="Brief description..." class="description-input" type="text" name="taskDescription"
+          <textarea id="taskDescription" placeholder="Brief description..." className="description-input" type="text" name="taskDescription"
             onChange={e => setTask({ ...task, description: e.target.value })} />
         </div>
         <br></br>
         <div>
           <label htmlFor="startTime">Start date</label>
           <br></br>
-          <input class= "datetime-input" id="time" type="datetime-local"
+          <input className= "datetime-input" id="time" type="datetime-local"
             onChange={e => setTask({ ...task, startTime: e.target.value })} />
         </div>
         <br></br>
         <div>
           <label htmlFor="time">Task duration</label>
           <br></br>
-          <input class="task-input" id="time" min="1" type="number" placeholder="Minutes"
+          <input className="task-input" id="time" min="1" type="number" placeholder="Minutes"
             onChange={e => setTask({ ...task, est: e.target.value })} />
         </div>
         <br></br>
@@ -61,7 +61,7 @@ const AddTodo = props => {
           <label>Add to calendar</label>
         </div>
         <div className="button-div">
-          <Button>Add Task</Button>
+          <Button type="submit">Add Task</Button>
         </div>
       </form>
     </div>
