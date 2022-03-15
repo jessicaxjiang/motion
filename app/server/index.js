@@ -80,31 +80,21 @@ app.post("/addevent", function (req, res) {
   let eventstarttime = body.eventstarttime;
   let eventendtime = body.eventendtime;
   let eventlocation = body.eventlocation;
-  let eventisrepetition = body.eventrepetition;
 
-  // Check if the date object is a valid date
-  // if (eventstarttime) {
-  //   console.log("Fail starttime")
-  //   return res.sendStatus(400);
-  // }
+  let startUnix = Date.parse(eventstarttime);
+  let endUnix = Date.parse(eventendtime);
 
-  // Check if the time object is a valid date
-  // if (eventendtime) {
-  //   console.log("Fail endtime")
-  //   return res.sendStatus(400);
-  // }
-
-  // Check if eventisrepetition object is boolean
-  if (typeof eventisrepetition !== "boolean") {
-    console.log("Fail srepetition")
+  //check if start time is before end time
+  if(endUnix-startUnix < 0) {
+    console.log("Invalid time range entered. Start time must be before End time.");
     return res.sendStatus(400);
   }
 
   pool.query(
-    `INSERT INTO events(title, starttime, endtime, location, description, isrepetition) 
+    `INSERT INTO events(subject, startTime, endTime, description, location) 
         VALUES($1, $2, $3, $4, $5)
         RETURNING *`,
-    [eventtitle, eventstarttime, eventendtime, eventlocation, eventdescription, eventisrepetition]
+    [eventtitle, eventstarttime, eventendtime, eventdescription, eventlocation]
   ).then(function (response) {
     // row was successfully inserted into table
     console.log("Inserted:");
@@ -164,31 +154,20 @@ app.post("/updateevent", function (req, res) {
   let eventstarttime = body.eventstarttime;
   let eventendtime = body.eventendtime;
   let eventlocation = body.eventlocation;
-  let eventisrepetition = body.eventrepetition;
 
+  let startUnix = Date.parse(eventstarttime);
+  let endUnix = Date.parse(eventendtime);
 
-  // Check if the date object is a valid date
-  // if (eventstarttime) {
-  //   console.log("Fail starttime")
-  //   return res.sendStatus(400);
-  // }
-
-  // Check if the time object is a valid date
-  // if (eventendtime) {
-  //   console.log("Fail endtime")
-  //   return res.sendStatus(400);
-  // }
-
-  // Check if eventisrepetition object is boolean
-  if (typeof eventisrepetition !== "boolean") {
-    console.log("Fail srepetition")
+  //check if start time is before end time
+  if(endUnix-startUnix < 0) {
+    console.log("Invalid time range entered. Start time must be before End time.");
     return res.sendStatus(400);
   }
 
   pool.query(
-    `UPDATE events SET starttime = $2, endtime = $3, location = $4, description = $5, isrepetition = $6
-        WHERE title = $1`,
-    [eventtitle, eventstarttime, eventendtime, eventlocation, eventdescription, eventisrepetition]
+    `UPDATE events SET startTime = $2, endTime = $3, description = $4, location = $5 
+        WHERE subject = $1`,
+    [eventtitle, eventstarttime, eventendtime, eventdescription, eventlocation]
   ).then(function (response) {
     // row was successfully inserted into table
     console.log("Updated");
@@ -247,7 +226,7 @@ app.get("/returnevent", function (req, res) {
   let eventtitle = req.query.eventtitle;
   console.log(eventtitle);
 
-  pool.query(`SELECT * FROM events WHERE title = '${eventtitle}'`).then(function (response) {
+  pool.query(`SELECT * FROM events WHERE subject = '${eventtitle}'`).then(function (response) {
     console.log("Found:");
     console.log(response.rows);
     res.json({ "rows": response.rows });
@@ -286,7 +265,7 @@ app.post("/deletevent", function (req, res) {
   let eventtitle = body.eventtitle;
 
   pool.query(
-    `DELETE FROM events WHERE title = $1`,
+    `DELETE FROM events WHERE subject = $1`,
     [eventtitle]
   ).then(function (response) {
     // row was successfully inserted into table
