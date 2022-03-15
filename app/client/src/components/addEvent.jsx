@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Header from "./Header";
 import './components.css';
 
 const AddEvent = props => {
@@ -19,6 +20,7 @@ const AddEvent = props => {
 
     return (
         <div>
+            <Header />
             <form>
                 <div onSubmit={submit}>
                     <label htmlFor="eventName">Event</label><br></br>
