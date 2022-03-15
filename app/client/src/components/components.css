@@ -1,5 +1,50 @@
 @import url(https://fonts.googleapis.com/css?family=Fredoka);
 
+
+label{
+  font-family: 'Fredoka';
+}
+
+input[type="checkbox"]{
+  height: 15px;
+  width: 15px;
+  background-color: white;
+}
+
+input.task-input {
+  resize: vertical;
+  padding:15px;
+  border-radius:15px;
+  border:0;
+  box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+  height:20px;
+  width: 300px;
+  font-family: 'Fredoka';
+}
+
+textarea.description-input{
+  width:50%;
+  resize: vertical;
+  padding:15px;
+  border-radius:15px;
+  border:0;
+  box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+  height:150px;
+  overflow-wrap: break-word;
+  font-family: 'Fredoka';
+}
+
+input.datetime-input{
+  resize: vertical;
+  padding:15px;
+  border-radius:15px;
+  border:0;
+  box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+  height:20px;
+  width: 300px;
+  font-family: 'Fredoka';
+}
+
 .Calendar{
     background-color: #C9B09A;
     text-align: center;

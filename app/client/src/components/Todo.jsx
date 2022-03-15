@@ -45,9 +45,6 @@ function Todo() {
                             })
                         }
                     </div>
-                    <table>
-                        
-                    </table>
                     <div className="addTaskButton">
                         <Button href="/addTodo">Add Task</Button>
                     </div>

@@ -1,88 +1,124 @@
 @import url(https://fonts.googleapis.com/css?family=Fredoka);
-
-.App {
-  text-align: center;
-  background-color: #DBD0BD;
+@media screen and (max-width: 1200px) {
+  .App-logo {display:none;}
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-
-.App-logo {
-  animation:  linear;
-}
-
-.login-header {
-  background-color: #c8a287;
-  min-height: 10vh;
+.App{
+  height:100%;
+  padding:30px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  background-color: #E8D4C7;
+  justify-content: space-evenly;
+}
+
+.section{
+  background-color: white;
+}
+
+.App-logo{
+  float: right;
+  width:60vw;
 }
 .App-header {
-  background-color: #c8a287;
-  min-height: 90vh;
-  display: flex;
+  width: 95vw;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  
 }
-.title-text{
+.home-title-text{
   font-family: 'Fredoka';
-  font-weight: 'bold';
-  font-style: 'italic';
+  font-weight: 900;
   font-size: 60px;
   color: white;
-  animation: infinite;
+  
 }
-.content-text{
+.home-subtitle-text{
   font-family: 'Fredoka';
-  font-size: 20px;
-  color: white;
+  padding-left: 30px;
+  padding-top:50px;
+  font-size:40px;
+  font-size-adjust: 0.5;
+  color: #60412b;
   align-items: center;
   justify-content: center;
 }
-.Log-In{
-  background-color: bisque;
-  position: absolute;
-  top: 30px;
-  right: 100px;
+
+.home-content-text{
+  font-family: 'Fredoka';
+  padding-left: 70px;
+  font-size:27px;
+  font-size-adjust: 0.5;
+  color: #b09171;
+  align-items: center;
+  justify-content: center;
+}
+
+.input {
+  resize: vertical;
+  float: left;
+  margin-left:80px;
+  padding:15px;
+  border-radius:15px;
+  border:0;
+  box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+  height:20px;
+  width: 300px;
   font-family: 'Fredoka';
 }
-.Sign-In{
+
+.login-button{
+  float: right;
   background-color: bisque;
-  position: absolute;
-  top: 30px;
-  right: 200px;
-  font-family: 'Fredoka';;
+  padding: 5px;
+  margin: 3px;
+  font-family: 'Fredoka';
+}
+.create-account-button{
+  float:right;
+  background-color: #b09171;
+  padding: 5px;
+  margin: 3px;
+  font-family: 'Fredoka';
+}
+.create-account-button2{
+  float:left;
+  border-radius:15px;
+  background-color: #b09171;
+  padding: 5px;
+  margin: 3px;
+  font-family: 'Fredoka';
 }
 
 .Tasks{
   background-color: bisque;
-  position: absolute;
   font-family: 'Fredoka';;
-  bottom: 50px;
+  margin-top:5px;
 }
 
 .Boards{
   background-color: bisque;
-  position: absolute;
   font-family: 'Fredoka';;
-  bottom: 100px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+html, body {
+  width: 100%;
+  height:100%;
+}
+
+body {
+    background: linear-gradient(-45deg, #60412b, #b09171, #d7b9aa, #eae6de);
+    background-size: 400% 400%;
+    animation: gradient 8s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 a {

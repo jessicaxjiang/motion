@@ -24,38 +24,47 @@ const AddTodo = props => {
     <div>
       <Header />
       <form onSubmit={submit}>
+        <br></br>
         <div>
           <label htmlFor="taskName">Task</label><br></br>
           <input id="taskName"
+            class="task-input"
             type="text"
             name="taskName"
+            placeholder="Task name"
             onChange={e => setTask({ ...task, title: e.target.value })} />
         </div>
+        <br></br>
         <div>
           <label htmlFor="taskDescription">Description</label>
           <br></br>
-          <input id="taskDescription" type="text" name="taskDescription"
+          <textarea id="taskDescription" placeholder="Brief description..." class="description-input" type="text" name="taskDescription"
             onChange={e => setTask({ ...task, description: e.target.value })} />
         </div>
+        <br></br>
         <div>
-          <label htmlFor="time">Estimate Time to Complete (minutes)</label>
+          <label htmlFor="startTime">Start date</label>
           <br></br>
-          <input id="time" type="number"
+          <input class= "datetime-input" id="time" type="datetime-local"
+            onChange={e => setTask({ ...task, startTime: e.target.value })} />
+        </div>
+        <br></br>
+        <div>
+          <label htmlFor="time">Task duration</label>
+          <br></br>
+          <input class="task-input" id="time" min="1" type="number" placeholder="Minutes"
             onChange={e => setTask({ ...task, est: e.target.value })} />
         </div>
+        <br></br>
         <div>
-          <label>Add to calendar?</label>
-          <input type="radio" name="calendar" value="yes" />
-          <label>Yes</label>
-          <input type="radio" name="calendar" value="no" />
-          <label>No</label>
+          <input type="checkbox" name="calendar" value="yes" />
+          <label>Add to calendar</label>
         </div>
         <div className="button-div">
           <Button>Add Task</Button>
         </div>
       </form>
     </div>
-
   )
 };
 
