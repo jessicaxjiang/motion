@@ -9,6 +9,7 @@ import AddEvent from './components/addEvent';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import ErrorPage from './components/ErrorPage';
+import TaskToCalendar from './components/taskToCalendar';
 
 const Home = () => (
   <div className="Home">
@@ -35,12 +36,13 @@ function App() {
           <div>
             <Routes>
               <Route path="/" element={<Home/>} />
-              <Route path="/todo" element={<Todo />} />
+              <Route path="/toDo" element={<Todo />} />
               <Route path="/calendar" element={<Calendar />} />
-              <Route path="/addTodo" element={<AddTodo/>} />
+              <Route path="/addToDo" element={<AddTodo/>} />
               <Route path="/addEvent" element = {<AddEvent />} />
-              <Route path="/signup" element = {<SignUp />} />
+              <Route path="/signUp" element = {<SignUp />} />
               <Route path="/login" element = {<Login />} />
+              <Route path="/taskToCalendar" element = {<TaskToCalendar />} />
               <Route path="/*" element = {<ErrorPage />} />
             </Routes>
           </div>

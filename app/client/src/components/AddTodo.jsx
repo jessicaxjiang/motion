@@ -16,11 +16,11 @@ const AddTodo = props => {
     }).then(function (response) {
       console.log(response.status);
       console.log(response);
-      window.location.href = "/todo";
+      window.location.href = "/toDo";
     }).catch(function (error) {
       console.log(error);
     });
-    navigate("/todo")
+    navigate("/toDo")
   }
 
   return (
@@ -51,7 +51,7 @@ const AddTodo = props => {
             onChange={e => setTask({ ...task, est: e.target.value })} />
         </div>
         <div className="button-div">
-          <Button type="submit">Add Task</Button>
+          <Button type="submit" className='addTask'>Add Task</Button>
         </div>
       </form>
     </div>
