@@ -11,7 +11,7 @@ const AddTodo = props => {
     fetch('/addtask', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({task}),
+      body: JSON.stringify({ task }),
     }).then(function (response) {
       console.log(response.status);
       console.log(response);
