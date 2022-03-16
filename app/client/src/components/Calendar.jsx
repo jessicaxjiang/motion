@@ -3,7 +3,7 @@ import { Inject, ScheduleComponent, Day, Week, WorkWeek, Month, Agenda } from '@
 import React from "react";
 import CalendarHeader from './CalendarHeader';
 import Button from '@material-ui/core/Button';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 /*
 this is the calendar API I used:
 https://ej2.syncfusion.com/react/documentation/api/calendar/#calendarcomponent
