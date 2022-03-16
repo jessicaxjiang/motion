@@ -23,6 +23,8 @@ let data = [{
 }]
 
 function Calendar() {
+  let [userEvents, setEvents] = useState([])
+
   function returnAllEvents() {
     let url = `http://localhost:3001/returnallevents`;
     fetch(url).then(function (response) {
@@ -35,13 +37,12 @@ function Calendar() {
         event["endtime"] = new Date(event.endtime);
       }
       console.log("changing to date objects: ", tempData);
-      return tempData;
+      setEvents = tempData;
     }).catch(function (error) {
       console.log(error); // in case fetch crashes for some reason
     });
   }
 
-  let serverData = returnAllEvents();
   useEffect(returnAllEvents, [])
 
   return (
@@ -54,7 +55,7 @@ function Calendar() {
         <Button href="/taskToCalendar" >Add Tasks To Calendar</Button>
         <Button href="/addEvent">Add Events</Button>
       </div>
-      <ScheduleComponent eventSettings={{ dataSource: serverData }}>
+      <ScheduleComponent eventSettings={{ dataSource: userEvents}}>
         <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
       </ScheduleComponent>
     </div>
