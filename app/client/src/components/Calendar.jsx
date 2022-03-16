@@ -13,12 +13,6 @@ using this tutorial:
 https://www.youtube.com/watch?v=wgqX295fGkY
 */
 
-
-
-
-
-
-
 let data = [{
   Id: 1,
   EndTime: new Date(2022, 4, 1, 6, 30),

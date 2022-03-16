@@ -1,6 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Fredoka);
-@media screen and (max-width: 1200px) {
-  .Error-logo {display:none;}
+
+.Error-logo {
+    width: 100%;
+    align-self: center;
 }
 
 .task{
@@ -77,7 +79,7 @@ textarea.description-input{
     font-family: 'Fredoka';
   }
 
-.button, .addTask {
+.button, .addTask, .home-button {
     background-color:bisque;
     border: none;
     color: black;
@@ -184,4 +186,23 @@ h3{
   background-color: bisque;
   width:217px;
   justify-content: center;
+}
+
+.error-img {
+  width: 65%;
+}
+
+.error-message{
+  padding: 50px 0 ;
+  flex-grow: 1;
+}
+.error-content {
+  display: flex;
+}
+
+h3 {
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fredoka';
+  font-size: 45px;
 }
