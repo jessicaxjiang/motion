@@ -2,9 +2,10 @@
 @media screen and (max-width: 1200px) {
   .App-logo {display:none;}
 }
+
 .App{
+  padding:10px;
   height:100%;
-  padding:30px;
   display: flex;
   background-color: #E8D4C7;
   justify-content: space-evenly;
@@ -66,6 +67,7 @@
 
 .login-button{
   float: right;
+  border-radius:15px;
   background-color: bisque;
   padding: 5px;
   margin: 3px;
@@ -73,6 +75,7 @@
 }
 .create-account-button{
   float:right;
+  border-radius:15px;
   background-color: #b09171;
   padding: 5px;
   margin: 3px;

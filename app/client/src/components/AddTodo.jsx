@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './components.css';
-import Header from './Header';
+import SmallHeader from './SmallHeader';
 import Button from '@material-ui/core/Button';
 
 const AddTodo = props => {
@@ -23,7 +23,7 @@ const AddTodo = props => {
 
   return (
     <div>
-      <Header />
+      <SmallHeader />
       <form onSubmit={submit}>
         <div>
           <label htmlFor="taskName">Task</label><br></br>

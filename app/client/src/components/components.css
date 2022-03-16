@@ -1,13 +1,78 @@
 @import url(https://fonts.googleapis.com/css?family=Fredoka);
+@media screen and (max-width: 1200px) {
+  .Error-logo {display:none;}
+}
 
-.task-container{
+.loginerror{
+  font-family: 'Fredoka';
+  color:red;
+  display:none;
+}
 
+hr.rounded {
+  border-top: 3px solid gray;
+  border-radius: 2px;
+  margin-left: 45px;
+  margin-top: 15px;
+  width: 300px;
+}
+
+input.subject-input-pw {
+  resize: vertical;
+  padding:15px;
+  border-radius:15px;
+  border:0;
+  box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+  height:20px;
+  width: 100%;
+  -webkit-text-security: disc;
+  font-family: 'Fredoka';
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.error-page{
+  margin-left: 10vw;
+}
+
+.error-message{
+  font-family: 'Fredoka';
+  font-size: 40px;
+  margin-top: 20%;
+}
+
+.Error-logo{
+  float: right;
+  margin-right: 5vw;
+  width:60%;
+}
+
+.home-button{
+  border-radius:15px;
+  background-color: #b09171;
+  width:65px;
+  padding: 5px;
+  margin-left: 2vw;
+  font-family: 'Fredoka';
 }
 
 label{
   font-family: 'Fredoka';
   font-size: 20px;
   margin: 5px;
+}
+
+.small-label{
+  font-family: 'Fredoka';
+  font-size: 15px;
+  color:black
+}
+
+.redirect{
+  font-family: 'Fredoka';
+  font-size: 15px;
+  margin-left: 120px;
+  color:black
 }
 
 input.subject-input {
@@ -51,7 +116,7 @@ textarea.description-input{
   }
 
 .title-text{
-    font-weight: 'bold';
+    font-weight: 900;
     font-style: 'italic';
     font-size: 60px;
     color: white;
@@ -73,7 +138,7 @@ textarea.description-input{
 .button-div {
     width: 50%;
     margin-top: 10px;
-    margin-left: 4vw;
+    margin-left: 30%;
     text-align: center;
     background-color: bisque;
 }
@@ -93,6 +158,13 @@ textarea.description-input{
   top:30px;
   font-family: 'Fredoka';
 }
+.TaskButton2{
+  background-color: bisque;
+  position: absolute;
+  top: 30px;
+  right: 100px;
+  font-family: 'Fredoka';
+}
 
 a {
   color: #FFFFFF;
@@ -100,8 +172,7 @@ a {
   font-family: 'Fredoka';
 }
 
-.header {
-  min-height: 15vh;
+.small-header {
   width:100%;
   display: flex;
   align-items: center;
@@ -109,7 +180,20 @@ a {
   font-family: 'Fredoka';
 }
 
-.h3{
+.wide-header {
+  width:95vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fredoka';
+}
+
+h3{
   font-weight: bold;
   font-size: 30px;
+}
+
+.todobuttons{
+  background-color: bisque;
+  width:213px;
 }

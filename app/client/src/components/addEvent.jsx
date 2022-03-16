@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from '@material-ui/core/Button';
-import Header from './Header';
+import SmallHeader from './SmallHeader';
 import './components.css';
 
 const AddEvent = props => {
@@ -15,7 +15,7 @@ const AddEvent = props => {
         }).then(function (response) {
             console.log(response.status);
             console.log(response);
-            //window.location.href = "/calendar";
+            window.location.href = "/calendar";
         }).catch(function (error) {
             console.log(error);
         });
@@ -23,7 +23,7 @@ const AddEvent = props => {
 
     return (
         <div>
-            <Header />
+            <SmallHeader />
             <form  onSubmit={submit}>
                 <div>
                     <label htmlFor="eventName">Event</label>
