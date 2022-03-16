@@ -1,27 +1,30 @@
 const pg = require("pg");
 const express = require("express");
+const bcrypt = require("bcrypt");
 
 const PORT = 3001;
 
 const app = express();
 const hostname = "localhost";
+const saltRounds = 10;
 
 
 const env = require("../env.json");
 const Pool = pg.Pool;
 const pool = new Pool(env);
 pool.connect().then(function () {
-    console.log(`Connected to database ${env.database}`);
+  console.log(`Connected to database ${env.database}`);
 });
 
 app.use(express.json());
 
 const cors = require("cors");
+const { response } = require("express");
 
 const corsOptions = {
-   origin:'http://localhost:3000', 
-   credentials:true,
-   optionSuccessStatus:200,
+  origin: 'http://localhost:3000',
+  credentials: true,
+  optionSuccessStatus: 200,
 }
 
 app.use(cors(corsOptions))
@@ -41,7 +44,6 @@ app.post("/addtask", function (req, res) {
   let taskEST = parseInt(body.est);
   let taskdescription = body.description;
   let taskisdone = false;
-  console.log(taskEST)
   console.log(Number.isInteger(taskEST));
   // Check if the date object is a valid date
   if (!(Number.isInteger(taskEST))) {
@@ -75,37 +77,27 @@ app.post("/addtask", function (req, res) {
 
 app.post("/addevent", function (req, res) {
   // Get data from body
-  let body = req.body;
-  let eventtitle = body.eventtitle;
-  let eventdescription = body.eventdescription;
-  let eventstarttime = body.eventstarttime;
-  let eventendtime = body.eventendtime;
-  let eventlocation = body.eventlocation;
-  let eventisrepetition = body.eventrepetition;
+  let body = req.body.event;
+  let eventtitle = body.subject;
+  let eventdescription = body.description;
+  let eventstarttime = body.startTime;
+  let eventendtime = body.endTime;
+  let eventlocation = body.location;
 
-  // Check if the date object is a valid date
-  // if (eventstarttime) {
-  //   console.log("Fail starttime")
-  //   return res.sendStatus(400);
-  // }
+  let startUnix = Date.parse(eventstarttime);
+  let endUnix = Date.parse(eventendtime);
 
-  // Check if the time object is a valid date
-  // if (eventendtime) {
-  //   console.log("Fail endtime")
-  //   return res.sendStatus(400);
-  // }
-
-  // Check if eventisrepetition object is boolean
-  if (typeof eventisrepetition !== "boolean") {
-    console.log("Fail srepetition")
+  //check if start time is before end time
+  if (endUnix - startUnix < 0) {
+    console.log("Invalid time range entered. Start time must be before End time.");
     return res.sendStatus(400);
   }
 
   pool.query(
-    `INSERT INTO events(title, starttime, endtime, location, description, isrepetition) 
+    `INSERT INTO events(subject, startTime, endTime, description, location) 
         VALUES($1, $2, $3, $4, $5)
         RETURNING *`,
-    [eventtitle, eventstarttime, eventendtime, eventlocation, eventdescription, eventisrepetition]
+    [eventtitle, eventstarttime, eventendtime, eventdescription, eventlocation]
   ).then(function (response) {
     // row was successfully inserted into table
     console.log("Inserted:");
@@ -118,6 +110,86 @@ app.post("/addevent", function (req, res) {
       return res.sendStatus(400);
       res.send();
     });
+});
+
+app.post("/addaccount", function (req, res) {
+  // Get data from body
+  let body = req.body.signup;
+  let username = body.username;
+  let password = body.password;
+  let passwordconfirm = body.confirmpassword;
+  if (username.length < 5) {
+    console.log("username doesn't match")
+    return res.sendStatus(400);
+  }
+  if (password.length < 8) {
+    console.log("password not long enough")
+    return res.sendStatus(400);
+  }
+  if (password !== passwordconfirm) {
+    console.log("passwords don't match")
+    return res.sendStatus(400);
+  }
+  pool.query(`SELECT * FROM users WHERE username='${username}'`).then(function (response) {
+    if (response.rows.length !== 0) {
+      return res.status(401).send();
+    }
+  });
+  bcrypt.hash(password, saltRounds).then(function (hashedpassword) {
+    console.log(hashedpassword);
+    pool.query(
+      `INSERT INTO users(username, hashed_password) 
+          VALUES($1, $2)
+          RETURNING *`,
+      [username, hashedpassword]
+    ).then(function (response) {
+      // row was successfully inserted into table
+      console.log("Inserted:");
+      console.log(response.rows);
+      res.send();
+    })
+      .catch(function (error) {
+        // something went wrong when inserting the row
+        console.log(error);
+        return res.sendStatus(400);
+      }).catch(function (error) {
+        console.log(error);
+        console.log("Could not hash password");
+        res.status(500).send(); // server error
+      });
+  })
+});
+
+app.post("/login", function (req, res) {
+  let body = req.body.login;
+  let username = body.username;
+  let password = body.password;
+  if (username.length === 0 || password.length === 0) {
+    console.log("username or password missing")
+    return res.sendStatus(400);
+  }
+  pool.query(`SELECT * FROM users WHERE username='${username}'`).then(function (response) {
+    if (response.rows.length === 0) {
+      console.log("account DNE")
+      return res.status(401).send();
+    }
+    bcrypt.hash(password, saltRounds).then(function (hashedpassword) {
+      pool.query(`SELECT * FROM users WHERE username='${username} AND hashed_password='${hashedpassword}''`).then(function (response) {
+        console.log("Found:");
+        console.log(response.rows);
+        res.json({ "rows": response.rows });
+      }).catch(function (error) {
+        console.log(error);
+        console.log("wrong password");
+        return res.sendStatus(400);
+      })
+    }).catch(function (error) {
+      alert("ks")
+      console.log(error);
+      console.log("Could not hash password");
+      res.status(500).send(); // server error
+    })
+  });
 });
 
 app.post("/updatetask", function (req, res) {
@@ -159,37 +231,26 @@ app.post("/updatetask", function (req, res) {
 
 app.post("/updateevent", function (req, res) {
   // Get data from body
-  let body = req.body;
-  let eventtitle = body.eventtitle;
-  let eventdescription = body.eventdescription;
-  let eventstarttime = body.eventstarttime;
-  let eventendtime = body.eventendtime;
-  let eventlocation = body.eventlocation;
-  let eventisrepetition = body.eventrepetition;
+  let body = req.body.event;
+  let eventtitle = body.subject;
+  let eventdescription = body.description;
+  let eventstarttime = body.startTime;
+  let eventendtime = body.endTime;
+  let eventlocation = body.location;
 
+  let startUnix = Date.parse(eventstarttime);
+  let endUnix = Date.parse(eventendtime);
 
-  // Check if the date object is a valid date
-  // if (eventstarttime) {
-  //   console.log("Fail starttime")
-  //   return res.sendStatus(400);
-  // }
-
-  // Check if the time object is a valid date
-  // if (eventendtime) {
-  //   console.log("Fail endtime")
-  //   return res.sendStatus(400);
-  // }
-
-  // Check if eventisrepetition object is boolean
-  if (typeof eventisrepetition !== "boolean") {
-    console.log("Fail srepetition")
+  //check if start time is before end time
+  if (endUnix - startUnix < 0) {
+    console.log("Invalid time range entered. Start time must be before End time.");
     return res.sendStatus(400);
   }
 
   pool.query(
-    `UPDATE events SET starttime = $2, endtime = $3, location = $4, description = $5, isrepetition = $6
-        WHERE title = $1`,
-    [eventtitle, eventstarttime, eventendtime, eventlocation, eventdescription, eventisrepetition]
+    `UPDATE events SET startTime = $2, endTime = $3, description = $4, location = $5 
+        WHERE subject = $1`,
+    [eventtitle, eventstarttime, eventendtime, eventdescription, eventlocation]
   ).then(function (response) {
     // row was successfully inserted into table
     console.log("Updated");
@@ -215,6 +276,7 @@ app.get("/returnalltasks", function (req, res) {
       return res.sendStatus(500);
     });
 });
+
 
 app.get("/returnallevents", function (req, res) {
   pool.query(`SELECT * FROM events`).then(function (response) {
@@ -248,7 +310,7 @@ app.get("/returnevent", function (req, res) {
   let eventtitle = req.query.eventtitle;
   console.log(eventtitle);
 
-  pool.query(`SELECT * FROM events WHERE title = '${eventtitle}'`).then(function (response) {
+  pool.query(`SELECT * FROM events WHERE subject = '${eventtitle}'`).then(function (response) {
     console.log("Found:");
     console.log(response.rows);
     res.json({ "rows": response.rows });
@@ -287,7 +349,7 @@ app.post("/deletevent", function (req, res) {
   let eventtitle = body.eventtitle;
 
   pool.query(
-    `DELETE FROM events WHERE title = $1`,
+    `DELETE FROM events WHERE subject = $1`,
     [eventtitle]
   ).then(function (response) {
     // row was successfully inserted into table

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import Button from '@material-ui/core/Button';
+import SmallHeader from './SmallHeader';
 import './components.css';
-
 
 const AddEvent = props => {
     const [event, setEvent] = useState(props.event)
-
+    console.log(event);
     const submit = e => {
         e.preventDefault();
         fetch('/addevent', {
@@ -14,6 +15,7 @@ const AddEvent = props => {
         }).then(function (response) {
             console.log(response.status);
             console.log(response);
+            window.location.href = "/calendar";
         }).catch(function (error) {
             console.log(error);
         });
@@ -21,23 +23,30 @@ const AddEvent = props => {
 
     return (
         <div>
-            <form>
-                <div onSubmit={submit}>
-                    <label htmlFor="eventName">Event</label><br></br>
+            <SmallHeader />
+            <form  onSubmit={submit}>
+                <div>
+                    <label htmlFor="eventName">Event</label>
                     <input id="eventName"
                         type="text"
                         name="eventName"
+                        className="subject-input"
+                        placeholder="Event name"
                         onChange={e => setEvent({ ...event, subject: e.target.value })} />
                 </div>
+                <br></br>
                 <div>
                     <label htmlFor="eventDescription">Description</label>
                     <br></br>
-                    <input
+                    <textarea
+                        className="description-input"
                         id="eventDescription"
                         type="text"
                         name="eventDescription"
+                        placeholder="Add description"
                         onChange={e => setEvent({ ...event, description: e.target.value })} />
                 </div>
+                <br></br>
                 <div>
                     <label htmlFor="eventLocation">Location</label>
                     <br></br>
@@ -45,52 +54,35 @@ const AddEvent = props => {
                         id="eventLocation"
                         type="text"
                         name="eventLocation"
+                        className="subject-input"
+                        placeholder="Add Location"
                         onChange={e => setEvent({ ...event, location: e.target.value })} />
                 </div>
+                <br></br>
                 <div>
-                    <label htmlFor="startHour">Start Time (hours)</label>
+                    <label htmlFor="startTime">Start Time</label>
                     <br></br>
-                    <input id="startHour" type="number" />
-                    <br></br>
-                    <label htmlFor="startMinutes">Start Time (minutes)</label>
-                    <br></br>
-                    <input id="startMinutes" type="number" />
+                    <input className="subject-input" id="startTimie" type="datetime-local"
+                        onChange={e => setEvent({ ...event, startTime: e.target.value })} />
                 </div>
+                <br></br>
                 <div>
-                    <label>AM or PM?</label>
-                    <input type="radio" name="startAMPM" value="am" />
-                    <label>AM</label>
-                    <input type="radio" name="startAMPM" value="pm" />
-                    <label>PM</label>
-                </div>
-                <div>
-                    <label htmlFor="endHour">End Time (hours)</label>
+                    <label htmlFor="endTime">End Time</label>
                     <br></br>
-                    <input id="endHour" type="number" />
-                    <br></br>
-                    <label htmlFor="endMinutes">End Time (minutes)</label>
-                    <br></br>
-                    <input id="endMinutes" type="number" />
+                    <input className="subject-input" id="endTime" type="datetime-local"
+                        onChange={e => setEvent({ ...event, endTime: e.target.value })} />
                 </div>
-                <div>
-                    <label>AM or PM?</label>
-                    <input type="radio" name="endAMPM" value="am" />
-                    <label>AM</label>
-                    <input type="radio" name="endAMPM" value="pm" />
-                    <label>PM</label>
-                </div>
+                <br></br>
                 <div className="button-div">
-                    <input type="submit" className="addEvent" name="Add Event" />
+                    <Button type="submit">Add Event</Button>
                 </div>
-
             </form>
         </div>
     )
 };
 
-
-//addEvent logic?
 /*
+//addEvent logic?
 function addEvent() {
     let nameInput = document.getElementById("eventName");
     let descriptionInput = document.getElementById("eventDescription");
@@ -120,6 +112,6 @@ function addEvent() {
     }).catch(function (error) {
         console.log(error); // in case fetch crashes for some reason
     });
-}*/
-
+}
+*/
 export default AddEvent;

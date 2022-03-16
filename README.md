@@ -30,3 +30,12 @@ Creating Tables
         description VARCHAR(200),
         isdone BOOLEAN
     );
+
+    CREATE TABLE events (
+    id SERIAL PRIMARY KEY,
+        subject VARCHAR(50),
+        startTime TIMESTAMP,
+        endTime TIMESTAMP,
+        description VARCHAR(500),
+        location VARCHAR(50)
+    );
