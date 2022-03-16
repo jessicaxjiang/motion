@@ -24,7 +24,6 @@ let data = [{
 
 function Calendar() {
   let [userEvents, setEvents] = useState([])
-  const [loading, setLoading] = useState(false);
 
   function returnAllEvents() {
     let url = `http://localhost:3001/returnallevents`;
@@ -44,13 +43,12 @@ function Calendar() {
       }
       console.log("changing to date objects: ", tempData);
       setEvents(newData);
-      setLoading(true);
     }).catch(function (error) {
       console.log(error); // in case fetch crashes for some reason
     });
   }
 
-  useEffect(returnAllEvents, [loading]);
+  useEffect(returnAllEvents, []);
 
   return (
     <div>
