@@ -19,33 +19,43 @@ function Todo() {
         });
     }
 
-    emptyTasks = tasks.length;
+    emptyTasks = tasks.length == 0;
     useEffect(returnAllTasks, []);
 
     return (
         <div>
             <Header />
-                <h3>TO DO</h3>
-                <div className="tasks-container">
-                    {tasks &&
-                        tasks.map((task, index) => {
-                            console.log(task);
-                            let title = task.title;
-                            let description = task.description;
-                            let est = task.est;
-                            return (
-                                <div className='task' key={index}>
-                                    <h2>{title}</h2>
-                                    <p>Description: {description}</p>
-                                    <p>Estimated Time: {est} minutes</p>
+            <div className="task-header">
+                To Do - Your Tasks List
+            </div>
+            <div className="tasks-container">
+                {emptyTasks && <div>
+                    <p>No Tasks Found. Add Some Below.</p>
+                </div>
+                }
+                {tasks &&
+                    tasks.map((task, index) => {
+                        console.log(task);
+                        let title = task.title;
+                        let description = task.description;
+                        let est = task.est;
+                        return (
+                            <div className='task' key={index}>
+                                <h2>{title}</h2>
+                                <p>Description: {description}</p>
+                                <p>Estimated Time: {est} minutes</p>
+                                <div className="button-task">
+                                    <Button className='taskButton'>Edit</Button>
+                                    <Button className='taskButton'>Mark DONE</Button>
                                 </div>
-                            )
-                        })
-                    }
-                </div>
-                <div className="addTaskButton">
-                    <Button href="/addTodo">Add Task</Button>
-                </div>
+                            </div>
+                        )
+                    })
+                }
+            </div>
+            <div className="button-div">
+                <Button href="/addTodo" className='addTask'>Add Task</Button>
+            </div>
 
         </div>
     );

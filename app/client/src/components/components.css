@@ -1,10 +1,13 @@
 @import url(https://fonts.googleapis.com/css?family=Fredoka);
 
-.task-container{
-
+.task{
+  background-color: rgb(224, 197, 163);
+  border-radius: 25px;
+  padding: 10px;
+  margin: 20px 0;
 }
 
-label{
+p, label{
   font-family: 'Fredoka';
   font-size: 20px;
   margin: 5px;
@@ -35,7 +38,7 @@ textarea.description-input{
   font-size: 18px;
 }
 
-.Calendar{
+.Calendar, .task-header{
     background-color: #C9B09A;
     text-align: center;
     color: white;
@@ -78,6 +81,17 @@ textarea.description-input{
     background-color: bisque;
 }
 
+.button-task {
+  width: 50%;
+  margin-top: 15px;
+  margin-left: 4vw;
+  text-align: center;
+}
+
+.taskButton {
+    color: bisque;
+}
+
 
 .CalendarButton{
   background-color: bisque;
@@ -86,6 +100,7 @@ textarea.description-input{
   right: 100px;
   font-family: 'Fredoka';
 }
+
 .TaskButton{
   background-color: bisque;
   position: absolute;
@@ -109,7 +124,7 @@ a {
   font-family: 'Fredoka';
 }
 
-.h3{
-  font-weight: bold;
-  font-size: 30px;
+h2 {
+  font-family: 'Fredoka';
+  color:white;
 }
