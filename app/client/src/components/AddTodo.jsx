@@ -16,11 +16,11 @@ const AddTodo = props => {
     }).then(function (response) {
       console.log(response.status);
       console.log(response);
-      window.location.href = "/todo";
+      window.location.href = "/toDo";
     }).catch(function (error) {
       console.log(error);
     });
-    navigate("/todo")
+    navigate("/toDo")
   }
 
   return (

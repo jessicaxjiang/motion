@@ -2,6 +2,7 @@ import './components.css';
 import { Inject, ScheduleComponent, Day, Week, WorkWeek, Month, Agenda } from '@syncfusion/ej2-react-schedule';
 import React from "react";
 import CalendarHeader from './CalendarHeader';
+import Button from '@material-ui/core/Button';
 
 /*
 this is the calendar API I used:

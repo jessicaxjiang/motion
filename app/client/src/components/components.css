@@ -204,3 +204,14 @@ h3{
   background-color: bisque;
   width:213px;
 }
+
+.tasktocalendar {
+  background-color: bisque;
+  width:146px;
+}
+
+.toAdd{
+  background-color: bisque;
+  width:217px;
+  justify-content: center;
+}
