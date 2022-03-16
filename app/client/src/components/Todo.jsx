@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 function Todo() {
     let [tasks, setTasks] = useState([])
     let emptyTasks = true;
+
     function returnAllTasks() {
         let url = `http://localhost:3001/returnalltasks`;
         fetch(url).then(function (response) {
@@ -19,15 +20,16 @@ function Todo() {
         });
     }
 
-    emptyTasks = tasks.length == 0;
+    emptyTasks = tasks.length === 0;
     useEffect(returnAllTasks, []);
 
     return (
         <div>
             <TodoHeader />
-            { emptyTasks && <div>
+            <div className="task-header">Your To Do List</div>
+            {emptyTasks && <div>
                 <h2>No tasks found. Add more below.</h2>
-            </div>
+                </div>
             }
             <div className="tasks-container">
 
@@ -52,9 +54,6 @@ function Todo() {
                     })
                 }
 
-            </div>
-            <div className="addTaskButton">
-                <Button href="/addToDo">Add Task</Button>
             </div>
             <div className="button-div">
                 <Button href="/addTodo" className='addTask'>Add Task</Button>
