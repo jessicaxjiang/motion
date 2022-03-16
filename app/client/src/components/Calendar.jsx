@@ -3,7 +3,7 @@ import { Inject, ScheduleComponent, Day, Week, WorkWeek, Month, Agenda } from '@
 import React from "react";
 import CalendarHeader from './CalendarHeader';
 import Button from '@material-ui/core/Button';
-
+import { useEffect, useState } from 'react';
 /*
 this is the calendar API I used:
 https://ej2.syncfusion.com/react/documentation/api/calendar/#calendarcomponent
@@ -23,43 +23,50 @@ let data = [{
 }]
 
 function Calendar() {
-  let loading = -1;
-  let serverData = {}
-  let url = `http://localhost:3001/returnallevents`;
-  if (loading === -1) {
+  let [userEvents, setEvents] = useState([])
+
+  function returnAllEvents() {
+    let url = `http://localhost:3001/returnallevents`;
     fetch(url).then(function (response) {
       return response.json();
     }).then(function (data) {
       console.log("Client received from server:", data);
-      serverData = data.dataSource
-      for (let event of serverData) {
-        event.startTime = new Date(event.startTime);
-        event.endTime = new Date(event.endTime);
+      let tempData = data.dataSource
+      let newData = []
+      for (let event of tempData) {
+        let newEvent = {};
+        newEvent["StartTime"] = new Date(event.starttime);
+        newEvent["EndTime"] = new Date(event.endtime);
+        newEvent["Subject"] = event.subject;
+        newEvent["Location"] = event.Location;
+        newData.push(newEvent);
       }
-      console.log("changing to date objects: ", serverData);
+      console.log("changing to date objects: ", tempData);
+      setEvents(newData);
     }).catch(function (error) {
       console.log(error); // in case fetch crashes for some reason
     });
-    loading = 0;
   }
-  if (loading === 0) {
-    console.log(loading)
-    return (
+
+  useEffect(returnAllEvents, []);
+
+  return (
+    <div>
+      <CalendarHeader />
+      <div className="Calendar">
+        Calendar
+      </div>
+      <div className="button">
+        <Button href="/taskToCalendar" >Add Tasks To Calendar</Button>
+        <Button href="/addEvent">Add Events</Button>
+      </div>
       <div>
-        <CalendarHeader />
-        <div className="Calendar">
-          Calendar
-        </div>
-        <ScheduleComponent eventSettings={{ dataSource: serverData }}>
+        <ScheduleComponent eventSettings={{ dataSource: userEvents }}>
           <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
         </ScheduleComponent>
       </div>
-    );
-  }
-  return (
-    <div></div>
-  )
-
+    </div>
+  );
 }
 
 /*
