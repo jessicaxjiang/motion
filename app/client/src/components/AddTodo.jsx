@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import './components.css';
 import Header from './Header';
 
 const AddTodo = props => {
   const [task, setTask] = useState(props.task)
-
+  let navigate =  useNavigate();
   const submit = e => {
     e.preventDefault();
     fetch('/addtask', {
@@ -17,6 +18,7 @@ const AddTodo = props => {
     }).catch(function (error) {
       console.log(error);
     });
+    navigate("/todo")
   }
 
   return (
