@@ -24,6 +24,7 @@ let data = [{
 
 function Calendar() {
   let [userEvents, setEvents] = useState([])
+  const [loading, setLoading] = useState(false);
 
   function returnAllEvents() {
     let url = `http://localhost:3001/returnallevents`;
@@ -32,18 +33,24 @@ function Calendar() {
     }).then(function (data) {
       console.log("Client received from server:", data);
       let tempData = data.dataSource
+      let newData = []
       for (let event of tempData) {
-        event["starttime"] = new Date(event.starttime);
-        event["endtime"] = new Date(event.endtime);
+        let newEvent = {};
+        newEvent["StartTime"] = new Date(event.starttime);
+        newEvent["EndTime"] = new Date(event.endtime);
+        newEvent["Subject"] = event.subject;
+        newEvent["Location"] = event.Location;
+        newData.push(newEvent);
       }
       console.log("changing to date objects: ", tempData);
-      setEvents(tempData);
+      setEvents(newData);
+      setLoading(true);
     }).catch(function (error) {
       console.log(error); // in case fetch crashes for some reason
     });
   }
 
-  useEffect(returnAllEvents, [])
+  useEffect(returnAllEvents, [loading]);
 
   return (
     <div>
@@ -55,12 +62,14 @@ function Calendar() {
         <Button href="/taskToCalendar" >Add Tasks To Calendar</Button>
         <Button href="/addEvent">Add Events</Button>
       </div>
-      <ScheduleComponent eventSettings={{ dataSource: userEvents}}>
-        <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
-      </ScheduleComponent>
+      <div>
+        <ScheduleComponent eventSettings={{ dataSource: userEvents }}>
+          <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
+        </ScheduleComponent>
+      </div>
     </div>
   );
-  }
+}
 
 /*
 //addevent
