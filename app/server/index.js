@@ -1,27 +1,30 @@
 const pg = require("pg");
 const express = require("express");
+const bcrypt = require("bcrypt");
 
 const PORT = 3001;
 
 const app = express();
 const hostname = "localhost";
+const saltRounds = 10;
 
 
 const env = require("../env.json");
 const Pool = pg.Pool;
 const pool = new Pool(env);
 pool.connect().then(function () {
-    console.log(`Connected to database ${env.database}`);
+  console.log(`Connected to database ${env.database}`);
 });
 
 app.use(express.json());
 
 const cors = require("cors");
+const { response } = require("express");
 
 const corsOptions = {
-   origin:'http://localhost:3000', 
-   credentials:true,
-   optionSuccessStatus:200,
+  origin: 'http://localhost:3000',
+  credentials: true,
+  optionSuccessStatus: 200,
 }
 
 app.use(cors(corsOptions))
@@ -74,18 +77,18 @@ app.post("/addtask", function (req, res) {
 
 app.post("/addevent", function (req, res) {
   // Get data from body
-  let body = req.body;
-  let eventtitle = body.eventtitle;
-  let eventdescription = body.eventdescription;
-  let eventstarttime = body.eventstarttime;
-  let eventendtime = body.eventendtime;
-  let eventlocation = body.eventlocation;
+  let body = req.body.event;
+  let eventtitle = body.subject;
+  let eventdescription = body.description;
+  let eventstarttime = body.startTime;
+  let eventendtime = body.endTime;
+  let eventlocation = body.location;
 
   let startUnix = Date.parse(eventstarttime);
   let endUnix = Date.parse(eventendtime);
 
   //check if start time is before end time
-  if(endUnix-startUnix < 0) {
+  if (endUnix - startUnix < 0) {
     console.log("Invalid time range entered. Start time must be before End time.");
     return res.sendStatus(400);
   }
@@ -107,6 +110,86 @@ app.post("/addevent", function (req, res) {
       return res.sendStatus(400);
       res.send();
     });
+});
+
+app.post("/addaccount", function (req, res) {
+  // Get data from body
+  let body = req.body.signup;
+  let username = body.username;
+  let password = body.password;
+  let passwordconfirm = body.confirmpassword;
+  if (username.length < 5) {
+    console.log("username doesn't match")
+    return res.sendStatus(400);
+  }
+  if (password.length < 8) {
+    console.log("password not long enough")
+    return res.sendStatus(400);
+  }
+  if (password !== passwordconfirm) {
+    console.log("passwords don't match")
+    return res.sendStatus(400);
+  }
+  pool.query(`SELECT * FROM users WHERE username='${username}'`).then(function (response) {
+    if (response.rows.length !== 0) {
+      return res.status(401).send();
+    }
+  });
+  bcrypt.hash(password, saltRounds).then(function (hashedpassword) {
+    console.log(hashedpassword);
+    pool.query(
+      `INSERT INTO users(username, hashed_password) 
+          VALUES($1, $2)
+          RETURNING *`,
+      [username, hashedpassword]
+    ).then(function (response) {
+      // row was successfully inserted into table
+      console.log("Inserted:");
+      console.log(response.rows);
+      res.send();
+    })
+      .catch(function (error) {
+        // something went wrong when inserting the row
+        console.log(error);
+        return res.sendStatus(400);
+      }).catch(function (error) {
+        console.log(error);
+        console.log("Could not hash password");
+        res.status(500).send(); // server error
+      });
+  })
+});
+
+app.post("/login", function (req, res) {
+  let body = req.body.login;
+  let username = body.username;
+  let password = body.password;
+  if (username.length === 0 || password.length === 0) {
+    console.log("username or password missing")
+    return res.sendStatus(400);
+  }
+  pool.query(`SELECT * FROM users WHERE username='${username}'`).then(function (response) {
+    if (response.rows.length === 0) {
+      console.log("account DNE")
+      return res.status(401).send();
+    }
+    bcrypt.hash(password, saltRounds).then(function (hashedpassword) {
+      pool.query(`SELECT * FROM users WHERE username='${username} AND hashed_password='${hashedpassword}''`).then(function (response) {
+        console.log("Found:");
+        console.log(response.rows);
+        res.json({ "rows": response.rows });
+      }).catch(function (error) {
+        console.log(error);
+        console.log("wrong password");
+        return res.sendStatus(400);
+      })
+    }).catch(function (error) {
+      alert("ks")
+      console.log(error);
+      console.log("Could not hash password");
+      res.status(500).send(); // server error
+    })
+  });
 });
 
 app.post("/updatetask", function (req, res) {
@@ -148,18 +231,18 @@ app.post("/updatetask", function (req, res) {
 
 app.post("/updateevent", function (req, res) {
   // Get data from body
-  let body = req.body;
-  let eventtitle = body.eventtitle;
-  let eventdescription = body.eventdescription;
-  let eventstarttime = body.eventstarttime;
-  let eventendtime = body.eventendtime;
-  let eventlocation = body.eventlocation;
+  let body = req.body.event;
+  let eventtitle = body.subject;
+  let eventdescription = body.description;
+  let eventstarttime = body.startTime;
+  let eventendtime = body.endTime;
+  let eventlocation = body.location;
 
   let startUnix = Date.parse(eventstarttime);
   let endUnix = Date.parse(eventendtime);
 
   //check if start time is before end time
-  if(endUnix-startUnix < 0) {
+  if (endUnix - startUnix < 0) {
     console.log("Invalid time range entered. Start time must be before End time.");
     return res.sendStatus(400);
   }
@@ -193,6 +276,7 @@ app.get("/returnalltasks", function (req, res) {
       return res.sendStatus(500);
     });
 });
+
 
 app.get("/returnallevents", function (req, res) {
   pool.query(`SELECT * FROM events`).then(function (response) {

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Button from '@material-ui/core/Button';
-import Header from './Header';
+import SmallHeader from './SmallHeader';
 import './components.css';
 
 const AddEvent = props => {
     const [event, setEvent] = useState(props.event)
+    console.log(event);
     const submit = e => {
         e.preventDefault();
         fetch('/addevent', {
@@ -14,6 +15,7 @@ const AddEvent = props => {
         }).then(function (response) {
             console.log(response.status);
             console.log(response);
+            window.location.href = "/calendar";
         }).catch(function (error) {
             console.log(error);
         });
@@ -21,10 +23,10 @@ const AddEvent = props => {
 
     return (
         <div>
-            <Header/>
-            <form>
-                <div onSubmit={submit}>
-                    <label htmlFor="eventName">Event</label><br></br>
+            <SmallHeader />
+            <form  onSubmit={submit}>
+                <div>
+                    <label htmlFor="eventName">Event</label>
                     <input id="eventName"
                         type="text"
                         name="eventName"
@@ -58,27 +60,28 @@ const AddEvent = props => {
                 </div>
                 <br></br>
                 <div>
-                    <label htmlFor="startHour">Start Time</label>
+                    <label htmlFor="startTime">Start Time</label>
                     <br></br>
-                    <input className="subject-input" id="startHour" type="datetime-local" />
+                    <input className="subject-input" id="startTimie" type="datetime-local"
+                        onChange={e => setEvent({ ...event, startTime: e.target.value })} />
                 </div>
                 <br></br>
                 <div>
-                    <label htmlFor="endHour">End Time</label>
+                    <label htmlFor="endTime">End Time</label>
                     <br></br>
-                    <input className="subject-input" id="endHour" type="datetime-local" />
+                    <input className="subject-input" id="endTime" type="datetime-local"
+                        onChange={e => setEvent({ ...event, endTime: e.target.value })} />
                 </div>
                 <br></br>
                 <div className="button-div">
-                    <Button type="submit" className="addEvent">Add Event</Button>
+                    <Button type="submit">Add Event</Button>
                 </div>
-
             </form>
         </div>
     )
 };
 
-
+/*
 //addEvent logic?
 function addEvent() {
     let nameInput = document.getElementById("eventName");
@@ -110,5 +113,5 @@ function addEvent() {
         console.log(error); // in case fetch crashes for some reason
     });
 }
-
+*/
 export default AddEvent;

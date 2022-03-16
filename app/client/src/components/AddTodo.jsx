@@ -1,31 +1,32 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import './components.css';
-import Header from './Header';
+import SmallHeader from './SmallHeader';
 import Button from '@material-ui/core/Button';
 
 const AddTodo = props => {
   const [task, setTask] = useState(props.task)
-
+  let navigate =  useNavigate();
   const submit = e => {
     e.preventDefault();
     fetch('/addtask', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({task}),
+      body: JSON.stringify({ task }),
     }).then(function (response) {
       console.log(response.status);
       console.log(response);
-      window.location.href = "/todo";
+      window.location.href = "/toDo";
     }).catch(function (error) {
       console.log(error);
     });
+    navigate("/toDo")
   }
 
   return (
     <div>
-      <Header />
+      <SmallHeader />
       <form onSubmit={submit}>
-        <br></br>
         <div>
           <label htmlFor="taskName">Task</label><br></br>
           <input id="taskName"

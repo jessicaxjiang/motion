@@ -1,4 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Fredoka);
+@media screen and (max-width: 1200px) {
+  .Error-logo {display:none;}
+}
 
 .task{
   background-color: rgb(224, 197, 163);
@@ -11,6 +14,19 @@ p, label{
   font-family: 'Fredoka';
   font-size: 20px;
   margin: 5px;
+}
+
+.small-label{
+  font-family: 'Fredoka';
+  font-size: 15px;
+  color:black
+}
+
+.redirect{
+  font-family: 'Fredoka';
+  font-size: 15px;
+  margin-left: 120px;
+  color:black
 }
 
 input.subject-input {
@@ -54,7 +70,7 @@ textarea.description-input{
   }
 
 .title-text{
-    font-weight: 'bold';
+    font-weight: 900;
     font-style: 'italic';
     font-size: 60px;
     color: white;
@@ -76,7 +92,7 @@ textarea.description-input{
 .button-div {
     width: 50%;
     margin-top: 10px;
-    margin-left: 4vw;
+    margin-left: 30%;
     text-align: center;
     background-color: bisque;
 }
@@ -97,6 +113,13 @@ textarea.description-input{
   background-color: bisque;
   position: absolute;
   top: 30px;
+  right: 193px;
+  font-family: 'Fredoka';
+}
+.LogoutButton{
+  background-color: #b09171;
+  position: absolute;
+  top: 30px;
   right: 100px;
   font-family: 'Fredoka';
 }
@@ -104,8 +127,15 @@ textarea.description-input{
 .TaskButton{
   background-color: bisque;
   position: absolute;
-  right: 200px;
+  right:300px;
   top:30px;
+  font-family: 'Fredoka';
+}
+.TaskButton2{
+  background-color: bisque;
+  position: absolute;
+  top: 30px;
+  right: 100px;
   font-family: 'Fredoka';
 }
 
@@ -115,8 +145,7 @@ a {
   font-family: 'Fredoka';
 }
 
-.header {
-  min-height: 15vh;
+.small-header {
   width:100%;
   display: flex;
   align-items: center;
@@ -127,4 +156,32 @@ a {
 h2 {
   font-family: 'Fredoka';
   color:white;
+}
+.wide-header {
+  width:95vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fredoka';
+}
+
+h3{
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.todobuttons{
+  background-color: bisque;
+  width:213px;
+}
+
+.tasktocalendar {
+  background-color: bisque;
+  width:146px;
+}
+
+.toAdd{
+  background-color: bisque;
+  width:217px;
+  justify-content: center;
 }

@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import TodoHeader from './TodoHeader';
 import { useEffect, useState } from 'react';
 
-function Todo() {
+function TaskToCalendar() {
     let [tasks, setTasks] = useState([])
     let emptyTasks = true;
     function returnAllTasks() {
@@ -19,18 +19,15 @@ function Todo() {
         });
     }
 
-    emptyTasks = tasks.length == 0;
+    emptyTasks = tasks.length;
     useEffect(returnAllTasks, []);
 
     return (
         <div>
             <TodoHeader />
-            { emptyTasks && <div>
-                <h2>No tasks found. Add more below.</h2>
-            </div>
-            }
+            <h3>Tasks For Your Calendar</h3>
+            <hr></hr>
             <div className="tasks-container">
-
                 {tasks &&
                     tasks.map((task, index) => {
                         console.log(task);
@@ -39,29 +36,26 @@ function Todo() {
                         let est = task.est;
                         return (
                             <div className='task' key={index}>
-                                <div className="todobuttons">
-                                    <Button>Edit</Button>
-                                    <Button>Complete/Delete</Button>
-                                </div>
                                 <h2>{title}</h2>
                                 <p>Description: {description}</p>
                                 <p>Estimated Time: {est} minutes</p>
+                                <div className="tasktocalendar">
+                                    <Button>Add To Calendar</Button>
+                                </div>
                                 <hr></hr>
                             </div>
                         )
                     })
                 }
-
             </div>
-            <div className="addTaskButton">
-                <Button href="/addToDo">Add Task</Button>
+            <div className="toAdd">
+                <div>
+                    <Button href="/addToDo">Add Task(s)</Button>
+                    <Button href="/addEvent">Add Event(s)</Button>
+                </div>
             </div>
-            <div className="button-div">
-                <Button href="/addTodo" className='addTask'>Add Task</Button>
-            </div>
-
         </div>
-    )
+    );
 }
 
 // //updatetask
@@ -72,11 +66,11 @@ function Todo() {
 //     // let taskisdone = body.taskisdone;
 
 //     console.log(tasktitle, taskdate, taskdescription, taskisdone);
-//     let data = { 'tasktitle': tasktitle, 'taskdate': taskdate, 'taskdescription': taskdescription, 'taskisdone': taskisdone };
+//     let data = {'tasktitle': tasktitle, 'taskdate': taskdate, 'taskdescription': taskdescription, 'taskisdone': taskisdone };
 
 //     fetch('/updatetask', {
 //         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
+//         headers: {'Content-Type': 'application/json' },
 //         body: JSON.stringify(data),
 //     }).then(function (response) {
 //         console.log(response.status); // will be 400 if request failed
@@ -129,4 +123,4 @@ function Todo() {
 //     });
 // }
 
-export default Todo;
+export default TaskToCalendar;
