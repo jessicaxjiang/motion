@@ -1,10 +1,12 @@
 const pg = require("pg");
 const express = require("express");
+const bcrypt = require("bcrypt");
 
 const PORT = 3001;
 
 const app = express();
 const hostname = "localhost";
+const saltRounds = 10;
 
 
 const env = require("../env.json");
@@ -17,6 +19,7 @@ pool.connect().then(function () {
 app.use(express.json());
 
 const cors = require("cors");
+const { response } = require("express");
 
 const corsOptions = {
   origin: 'http://localhost:3000',
@@ -127,24 +130,66 @@ app.post("/addaccount", function (req, res) {
     console.log("passwords don't match")
     return res.sendStatus(400);
   }
-
-  pool.query(
-    `INSERT INTO events(subject, startTime, endTime, description, location) 
-        VALUES($1, $2, $3, $4, $5)
-        RETURNING *`,
-    [eventtitle, eventstarttime, eventendtime, eventdescription, eventlocation]
-  ).then(function (response) {
-    // row was successfully inserted into table
-    console.log("Inserted:");
-    console.log(response.rows);
-    res.send();
-  })
-    .catch(function (error) {
-      // something went wrong when inserting the row
-      console.log(error);
-      return res.sendStatus(400);
+  pool.query(`SELECT * FROM users WHERE username='${username}'`).then(function (response) {
+    if (response.rows.length !== 0) {
+      return res.status(401).send();
+    }
+  });
+  bcrypt.hash(password, saltRounds).then(function (hashedpassword) {
+    console.log(hashedpassword);
+    pool.query(
+      `INSERT INTO users(username, hashed_password) 
+          VALUES($1, $2)
+          RETURNING *`,
+      [username, hashedpassword]
+    ).then(function (response) {
+      // row was successfully inserted into table
+      console.log("Inserted:");
+      console.log(response.rows);
       res.send();
-    });
+    })
+      .catch(function (error) {
+        // something went wrong when inserting the row
+        console.log(error);
+        return res.sendStatus(400);
+      }).catch(function (error) {
+        console.log(error);
+        console.log("Could not hash password");
+        res.status(500).send(); // server error
+      });
+  })
+});
+
+app.post("/login", function (req, res) {
+  let body = req.body.login;
+  let username = body.username;
+  let password = body.password;
+  if (username.length === 0 || password.length === 0) {
+    console.log("username or password missing")
+    return res.sendStatus(400);
+  }
+  pool.query(`SELECT * FROM users WHERE username='${username}'`).then(function (response) {
+    if (response.rows.length === 0) {
+      console.log("account DNE")
+      return res.status(401).send();
+    }
+    bcrypt.hash(password, saltRounds).then(function (hashedpassword) {
+      pool.query(`SELECT * FROM users WHERE username='${username} AND hashed_password='${hashedpassword}''`).then(function (response) {
+        console.log("Found:");
+        console.log(response.rows);
+        res.json({ "rows": response.rows });
+      }).catch(function (error) {
+        console.log(error);
+        console.log("wrong password");
+        return res.sendStatus(400);
+      })
+    }).catch(function (error) {
+      alert("ks")
+      console.log(error);
+      console.log("Could not hash password");
+      res.status(500).send(); // server error
+    })
+  });
 });
 
 app.post("/updatetask", function (req, res) {
@@ -231,6 +276,7 @@ app.get("/returnalltasks", function (req, res) {
       return res.sendStatus(500);
     });
 });
+
 
 app.get("/returnallevents", function (req, res) {
   pool.query(`SELECT * FROM events`).then(function (response) {

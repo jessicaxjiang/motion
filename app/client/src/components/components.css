@@ -148,13 +148,20 @@ textarea.description-input{
   background-color: bisque;
   position: absolute;
   top: 30px;
+  right: 193px;
+  font-family: 'Fredoka';
+}
+.LogoutButton{
+  background-color: #b09171;
+  position: absolute;
+  top: 30px;
   right: 100px;
   font-family: 'Fredoka';
 }
 .TaskButton{
   background-color: bisque;
   position: absolute;
-  right: 200px;
+  right:300px;
   top:30px;
   font-family: 'Fredoka';
 }

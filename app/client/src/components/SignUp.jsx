@@ -27,14 +27,23 @@ const SignUp = props => {
             flag = 1;
         }
         if (flag===0){
+            userinvalid.style.display = "none";
+            passwordinvalid.style.display = "none";
+            passwordmismatch.style.display = "none";
             fetch('/addaccount', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ signup }),
             }).then(function (response) {
-                console.log(response.status);
-                console.log(response);
-                window.location.href = "/todo";
+                if(response.status === 200){
+                    console.log(response.status);
+                    console.log(response);
+                    window.location.href = "/todo";
+                }
+                else{
+                    console.log(response.status);
+                    console.log(response);
+                }
             }).catch(function (error) {
                 console.log(error);
             });
@@ -82,7 +91,7 @@ const SignUp = props => {
                 <div className="small-label" >Username must be at least 5 characters</div>
                 <div className="small-label" >Password must be at least 8 characters</div>
                 <div className="button-div">
-                    <Button type="submit">Log in</Button>
+                    <Button type="submit">Sign up</Button>
                 </div>
             </form>
         </div>
