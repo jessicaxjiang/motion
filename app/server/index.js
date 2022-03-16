@@ -231,12 +231,12 @@ app.post("/updatetask", function (req, res) {
 
 app.post("/updateevent", function (req, res) {
   // Get data from body
-  let body = req.body;
-  let eventtitle = body.eventtitle;
-  let eventdescription = body.eventdescription;
-  let eventstarttime = body.eventstarttime;
-  let eventendtime = body.eventendtime;
-  let eventlocation = body.eventlocation;
+  let body = req.body.event;
+  let eventtitle = body.subject;
+  let eventdescription = body.description;
+  let eventstarttime = body.startTime;
+  let eventendtime = body.endTime;
+  let eventlocation = body.location;
 
   let startUnix = Date.parse(eventstarttime);
   let endUnix = Date.parse(eventendtime);
