@@ -37,7 +37,7 @@ function Calendar() {
         event["endtime"] = new Date(event.endtime);
       }
       console.log("changing to date objects: ", tempData);
-      setEvents = tempData;
+      setEvents(tempData);
     }).catch(function (error) {
       console.log(error); // in case fetch crashes for some reason
     });
