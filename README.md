@@ -27,7 +27,7 @@ Creating Tables
         id SERIAL PRIMARY KEY,
         title VARCHAR(50),
         est INT,
-        description VARCHAR(200),
+        description VARCHAR(500),
         isdone BOOLEAN
     );
 

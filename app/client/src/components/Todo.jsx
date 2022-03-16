@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 function Todo() {
     let [tasks, setTasks] = useState([])
     let emptyTasks = true;
+
     function returnAllTasks() {
         let url = `http://localhost:3001/returnalltasks`;
         fetch(url).then(function (response) {
@@ -19,42 +20,47 @@ function Todo() {
         });
     }
 
-    emptyTasks = tasks.length;
+    emptyTasks = tasks.length === 0;
     useEffect(returnAllTasks, []);
 
     return (
         <div>
             <TodoHeader />
-                <h3>TO DO</h3>
-                <hr></hr>
-                <div className="tasks-container">
-                    {tasks &&
-                        tasks.map((task, index) => {
-                            console.log(task);
-                            let title = task.title;
-                            let description = task.description;
-                            let est = task.est;
-                            return (
-                                <div className='task' key={index}>
-                                    <div className="todobuttons">
+            <div className="task-header">Your To Do List</div>
+            {emptyTasks && <div>
+                <h2>No tasks found. Add more below.</h2>
+                </div>
+            }
+            <div className="tasks-container">
+
+                {tasks &&
+                    tasks.map((task, index) => {
+                        console.log(task);
+                        let title = task.title;
+                        let description = task.description;
+                        let est = task.est;
+                        return (
+                            <div className='task' key={index}>
+                                <div className="todobuttons">
                                     <Button>Edit</Button>
                                     <Button>Complete/Delete</Button>
-                                    </div>
-                                    <h2>{title}</h2>
-                                    <p>Description: {description}</p>
-                                    <p>Estimated Time: {est} minutes</p>
-                                    <hr></hr>
                                 </div>
-                            )
-                        })
-                    }
-                </div>
-                <div className="addTaskButton">
-                    <Button href="/addToDo">Add Task</Button>
-                </div>
+                                <h2>{title}</h2>
+                                <p>Description: {description}</p>
+                                <p>Estimated Time: {est} minutes</p>
+                                <hr></hr>
+                            </div>
+                        )
+                    })
+                }
+
+            </div>
+            <div className="button-div">
+                <Button href="/addTodo" className='addTask'>Add Task</Button>
+            </div>
 
         </div>
-    );
+    )
 }
 
 // //updatetask

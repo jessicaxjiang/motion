@@ -51,7 +51,7 @@ const AddTodo = props => {
             onChange={e => setTask({ ...task, est: e.target.value })} />
         </div>
         <div className="button-div">
-          <Button type="submit">Add Task</Button>
+          <Button type="submit" className='addTask'>Add Task</Button>
         </div>
       </form>
     </div>

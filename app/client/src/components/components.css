@@ -1,62 +1,18 @@
 @import url(https://fonts.googleapis.com/css?family=Fredoka);
-@media screen and (max-width: 1200px) {
-  .Error-logo {display:none;}
+
+.Error-logo {
+    width: 100%;
+    align-self: center;
 }
 
-.loginerror{
-  font-family: 'Fredoka';
-  color:red;
-  display:none;
+.task{
+  background-color: rgb(224, 197, 163);
+  border-radius: 25px;
+  padding: 10px;
+  margin: 20px 0;
 }
 
-hr.rounded {
-  border-top: 3px solid gray;
-  border-radius: 2px;
-  margin-left: 45px;
-  margin-top: 15px;
-  width: 300px;
-}
-
-input.subject-input-pw {
-  resize: vertical;
-  padding:15px;
-  border-radius:15px;
-  border:0;
-  box-shadow:4px 4px 10px rgba(0,0,0,0.06);
-  height:20px;
-  width: 100%;
-  -webkit-text-security: disc;
-  font-family: 'Fredoka';
-  font-size: 18px;
-  margin-bottom: 5px;
-}
-
-.error-page{
-  margin-left: 10vw;
-}
-
-.error-message{
-  font-family: 'Fredoka';
-  font-size: 40px;
-  margin-top: 20%;
-}
-
-.Error-logo{
-  float: right;
-  margin-right: 5vw;
-  width:60%;
-}
-
-.home-button{
-  border-radius:15px;
-  background-color: #b09171;
-  width:65px;
-  padding: 5px;
-  margin-left: 2vw;
-  font-family: 'Fredoka';
-}
-
-label{
+p, label{
   font-family: 'Fredoka';
   font-size: 20px;
   margin: 5px;
@@ -100,7 +56,7 @@ textarea.description-input{
   font-size: 18px;
 }
 
-.Calendar{
+.Calendar, .task-header{
     background-color: #C9B09A;
     text-align: center;
     color: white;
@@ -123,7 +79,7 @@ textarea.description-input{
     font-family: 'Fredoka';
   }
 
-.button, .addTask {
+.button, .addTask, .home-button {
     background-color:bisque;
     border: none;
     color: black;
@@ -143,6 +99,17 @@ textarea.description-input{
     background-color: bisque;
 }
 
+.button-task {
+  width: 50%;
+  margin-top: 15px;
+  margin-left: 4vw;
+  text-align: center;
+}
+
+.taskButton {
+    color: bisque;
+}
+
 
 .CalendarButton{
   background-color: bisque;
@@ -158,6 +125,7 @@ textarea.description-input{
   right: 100px;
   font-family: 'Fredoka';
 }
+
 .TaskButton{
   background-color: bisque;
   position: absolute;
@@ -187,6 +155,10 @@ a {
   font-family: 'Fredoka';
 }
 
+h2 {
+  font-family: 'Fredoka';
+  color:white;
+}
 .wide-header {
   width:95vw;
   display: flex;
@@ -214,4 +186,23 @@ h3{
   background-color: bisque;
   width:217px;
   justify-content: center;
+}
+
+.error-img {
+  width: 65%;
+}
+
+.error-message{
+  padding: 50px 0 ;
+  flex-grow: 1;
+}
+.error-content {
+  display: flex;
+}
+
+h3 {
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fredoka';
+  font-size: 45px;
 }

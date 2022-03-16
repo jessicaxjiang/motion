@@ -13,6 +13,15 @@ using this tutorial:
 https://www.youtube.com/watch?v=wgqX295fGkY
 */
 
+let data = [{
+  Id: 1,
+  EndTime: new Date(2022, 4, 1, 6, 30),
+  StartTime: new Date(2022, 4, 1, 6, 0),
+  Subject: 'test2',
+  Location: 'testLocation'
+
+}]
+
 function Calendar() {
   function returnAllEvents() {
     let url = `http://localhost:3001/returnallevents`;
