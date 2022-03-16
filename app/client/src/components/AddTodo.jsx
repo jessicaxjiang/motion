@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 
 const AddTodo = props => {
   const [task, setTask] = useState(props.task)
-
+  
   const submit = e => {
     e.preventDefault();
     fetch('/addtask', {
@@ -25,7 +25,6 @@ const AddTodo = props => {
     <div>
       <Header />
       <form onSubmit={submit}>
-        <br></br>
         <div>
           <label htmlFor="taskName">Task</label><br></br>
           <input id="taskName"

@@ -5,6 +5,7 @@ import './components.css';
 
 const AddEvent = props => {
     const [event, setEvent] = useState(props.event)
+    console.log(event);
     const submit = e => {
         e.preventDefault();
         fetch('/addevent', {
@@ -14,6 +15,7 @@ const AddEvent = props => {
         }).then(function (response) {
             console.log(response.status);
             console.log(response);
+            //window.location.href = "/calendar";
         }).catch(function (error) {
             console.log(error);
         });
@@ -22,9 +24,9 @@ const AddEvent = props => {
     return (
         <div>
             <Header />
-            <form>
-                <div onSubmit={submit}>
-                    <label htmlFor="eventName">Event</label><br></br>
+            <form  onSubmit={submit}>
+                <div>
+                    <label htmlFor="eventName">Event</label>
                     <input id="eventName"
                         type="text"
                         name="eventName"
@@ -74,7 +76,6 @@ const AddEvent = props => {
                 <div className="button-div">
                     <Button type="submit">Add Event</Button>
                 </div>
-
             </form>
         </div>
     )
