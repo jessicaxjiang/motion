@@ -23,8 +23,12 @@ function App() {
   return (
     <div className="App">
       <div className="login-header">
-        <div className="Log-In"><Button variant="Log-In" to="/Login">Log In</Button></div>
-        <div className="Sign-In"><Button variant="Sign-Up" to="/SignUp">Create Account</Button></div>
+        <div className="Log-In">
+          <Button variant="Log-In" onClick={Login} >Log In</Button>
+          </div>
+        <div className="Sign-In">
+          <Button variant="Sign-Up" onClick={SignUp} >Create Account</Button>
+          </div>
       </div>
       <div>
         <Router>
@@ -44,4 +48,6 @@ function App() {
     </div>
   );
 }
+
+
 export default App;
