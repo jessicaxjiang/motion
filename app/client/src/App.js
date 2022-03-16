@@ -34,9 +34,9 @@ function App() {
               <Route path="/todo" element={<Todo />} />
               <Route path="/calendar" element={<Calendar />} />
               // adding the routes for the login , sign up and Go to boards buttons 
-              <Route path="/Login" element={<Login />} />
-              <Route path="/SignUp" element={<SignUp />} />
-              <Route path="/Boards" element={<Boards />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signUp" element={<SignUp />} />
+              <Route path="/boards" element={<Boards />} />
             </Routes>
           </div>
         </Router>
