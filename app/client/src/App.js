@@ -1,5 +1,4 @@
 import logo from './image1.png';
-import motionlogo from './motion-logo.png';
 import './App.css';
 import Button from '@material-ui/core/Button';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -8,12 +7,14 @@ import Calendar from './components/Calendar';
 import AddTodo from './components/AddTodo';
 import AddEvent from './components/addEvent';
 import SignUp from './components/SignUp';
+import Login from './components/Login';
+import ErrorPage from './components/ErrorPage';
 
 const Home = () => (
-  <div className="App">
+  <div className="Home">
       <header className="App-header">
-        <div className="login-button"><Button>Log In</Button></div>
-        <div className="create-account-button"><Button>Create Account</Button></div>
+        <div className="login-button"><Button href="/login">Log In</Button></div>
+        <div className="create-account-button"><Button href="/signup">Create Account</Button></div>
         <div className="home-title-text"> <a href='/'>Motion</a> </div>
         <img src={logo} className="App-logo" alt="logo"/>
         <div className="home-subtitle-text"><p>The tool to put your plans in motion</p></div>
@@ -39,6 +40,8 @@ function App() {
               <Route path="/addTodo" element={<AddTodo/>} />
               <Route path="/addEvent" element = {<AddEvent />} />
               <Route path="/signup" element = {<SignUp />} />
+              <Route path="/login" element = {<Login />} />
+              <Route path="/*" element = {<ErrorPage />} />
             </Routes>
           </div>
         </Router>

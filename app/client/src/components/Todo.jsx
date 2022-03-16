@@ -1,6 +1,6 @@
 import './components.css';
 import Button from '@material-ui/core/Button';
-import Header from './Header';
+import TodoHeader from './TodoHeader';
 import { useEffect, useState } from 'react';
 
 function Todo() {
@@ -24,8 +24,9 @@ function Todo() {
 
     return (
         <div>
-            <Header />
+            <TodoHeader />
                 <h3>TO DO</h3>
+                <hr></hr>
                 <div className="tasks-container">
                     {tasks &&
                         tasks.map((task, index) => {
@@ -35,9 +36,14 @@ function Todo() {
                             let est = task.est;
                             return (
                                 <div className='task' key={index}>
+                                    <div className="todobuttons">
+                                    <Button>Edit</Button>
+                                    <Button>Complete/Delete</Button>
+                                    </div>
                                     <h2>{title}</h2>
                                     <p>Description: {description}</p>
                                     <p>Estimated Time: {est} minutes</p>
+                                    <hr></hr>
                                 </div>
                             )
                         })

@@ -1,7 +1,7 @@
 import './components.css';
 import { Inject, ScheduleComponent, Day, Week, WorkWeek, Month, Agenda } from '@syncfusion/ej2-react-schedule';
 import React from "react";
-import Header from './Header';
+import CalendarHeader from './CalendarHeader';
 
 /*
 this is the calendar API I used:
@@ -25,7 +25,7 @@ let data= [{
 function Calendar() {
   return (
     <div>
-      <Header/>
+      <CalendarHeader/>
       <div className="Calendar">
         Calendar
       </div>

@@ -11,7 +11,7 @@ const env = require("../env.json");
 const Pool = pg.Pool;
 const pool = new Pool(env);
 pool.connect().then(function () {
-    console.log(`Connected to database ${env.database}`);
+  console.log(`Connected to database ${env.database}`);
 });
 
 app.use(express.json());
@@ -19,9 +19,9 @@ app.use(express.json());
 const cors = require("cors");
 
 const corsOptions = {
-   origin:'http://localhost:3000', 
-   credentials:true,
-   optionSuccessStatus:200,
+  origin: 'http://localhost:3000',
+  credentials: true,
+  optionSuccessStatus: 200,
 }
 
 app.use(cors(corsOptions))
@@ -85,8 +85,46 @@ app.post("/addevent", function (req, res) {
   let endUnix = Date.parse(eventendtime);
 
   //check if start time is before end time
-  if(endUnix-startUnix < 0) {
+  if (endUnix - startUnix < 0) {
     console.log("Invalid time range entered. Start time must be before End time.");
+    return res.sendStatus(400);
+  }
+
+  pool.query(
+    `INSERT INTO events(subject, startTime, endTime, description, location) 
+        VALUES($1, $2, $3, $4, $5)
+        RETURNING *`,
+    [eventtitle, eventstarttime, eventendtime, eventdescription, eventlocation]
+  ).then(function (response) {
+    // row was successfully inserted into table
+    console.log("Inserted:");
+    console.log(response.rows);
+    res.send();
+  })
+    .catch(function (error) {
+      // something went wrong when inserting the row
+      console.log(error);
+      return res.sendStatus(400);
+      res.send();
+    });
+});
+
+app.post("/addaccount", function (req, res) {
+  // Get data from body
+  let body = req.body.signup;
+  let username = body.username;
+  let password = body.password;
+  let passwordconfirm = body.confirmpassword;
+  if (username.length < 5) {
+    console.log("username doesn't match")
+    return res.sendStatus(400);
+  }
+  if (password.length < 8) {
+    console.log("password not long enough")
+    return res.sendStatus(400);
+  }
+  if (password !== passwordconfirm) {
+    console.log("passwords don't match")
     return res.sendStatus(400);
   }
 
@@ -159,7 +197,7 @@ app.post("/updateevent", function (req, res) {
   let endUnix = Date.parse(eventendtime);
 
   //check if start time is before end time
-  if(endUnix-startUnix < 0) {
+  if (endUnix - startUnix < 0) {
     console.log("Invalid time range entered. Start time must be before End time.");
     return res.sendStatus(400);
   }
