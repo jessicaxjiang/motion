@@ -2,6 +2,7 @@ import './components.css';
 import { Inject, ScheduleComponent, Day, Week, WorkWeek, Month, Agenda } from '@syncfusion/ej2-react-schedule';
 import React from "react";
 import CalendarHeader from './CalendarHeader';
+import Button from '@material-ui/core/Button';
 
 /*
 this is the calendar API I used:
@@ -39,8 +40,8 @@ function Calendar() {
     console.log("Client received from server:", data);
     serverData = data.dataSource
     for (let event of serverData) {
-      event.startTime = new Date(event.startTime);
-      event.endTime = new Date(event.endTime);
+      event["starttime"] = new Date(event.starttime);
+      event["endtime"] = new Date(event.endtime);
     }
     console.log("changing to date objects: ", serverData);
   }).catch(function (error) {
@@ -52,6 +53,9 @@ function Calendar() {
       <CalendarHeader/>
       <div className="Calendar">
         Calendar
+      </div>
+      <div className="button">
+        <Button href="/taskToCalendar">Add Tasks To Your Calendar</Button>
       </div>
       <ScheduleComponent eventSettings={{ dataSource: serverData }}>
         <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
