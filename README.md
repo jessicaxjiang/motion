@@ -1,4 +1,5 @@
 # motion
+Motion, is an online planner that includes a To-Do list and calendar for task scheduling, targeted to a working professional or student audience. 
 
 ## Ports: 
 Server runs on PORT 3001.
@@ -34,7 +35,7 @@ Sign out and then sign in postgres specificially the newly created motion databa
         location VARCHAR(50)
     );
     
- You're done! 
+ You're done (with the postgres part at least)! 
  
  ## env.json
  In /app folder, there is an `env.json` file with database information. Please replace the "password" value with your postgres password. Now you're ready To Start.
