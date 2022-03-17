@@ -14,16 +14,16 @@ import TaskToCalendar from './components/taskToCalendar';
 const Home = () => (
   <div className="Home">
       <header className="App-header">
-        <div className="login-button"><Button href="/login">Log In</Button></div>
-        <div className="create-account-button"><Button href="/signup">Create Account</Button></div>
+        <div className="login-button"><Button href="/todo">To Do</Button></div>
+        <div className="create-account-button"><Button href="/calendar">Calendar</Button></div>
         <div className="home-title-text"> <a href='/'>Motion</a> </div>
         <img src={logo} className="App-logo" alt="logo"/>
         <div className="home-subtitle-text"><p>The tool to put your plans in motion</p></div>
         <div className="home-content-text"><p>Manage and visualize your tasks to achieve maximum productivity</p></div>
-        <div id="signup-wrapper">
+        {/* <div id="signup-wrapper">
           <input id="username" type="text" className="input" placeholder="Username"></input>
           <div className="create-account-button2"><Button href="/signup">Sign up!</Button></div>
-        </div>
+        </div> */}
       </header>
   </div>
 );
